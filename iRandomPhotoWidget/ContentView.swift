@@ -121,6 +121,8 @@ struct OnCircularView: View  {
             Spacer()
             Spacer()
             Spacer()
+            Spacer()
+            Spacer()
             
             GeometryReader { proxy in
                 ScrollView(.horizontal, showsIndicators: false, content: {
@@ -128,26 +130,20 @@ struct OnCircularView: View  {
                         ForEach(images.indices, id: \.self) { (index) in
                             Image(uiImage: images[index])
                                 .resizable()
-                                .scaledToFill()
+                                .aspectRatio(contentMode: .fit)
                                 .overlay(Color.black.opacity(0.4))
-                                .frame(width: proxy.size.width, height: 200)
-                            
+                                .frame(width: proxy.size.width, height: 300)
                         }
                     }
                 })
-                .clipShape(RoundedRectangle(cornerRadius: 5))
+                .clipShape(RoundedRectangle(cornerRadius: 10))
                 .padding()
                 .frame(width: proxy.size.width, height: proxy.size.height / 3)
-//                TabView {
-//                }.tabViewStyle(PageTabViewStyle())
-//                .clipShape(RoundedRectangle(cornerRadius: 5))
-//                .tag(images.count)
-//                .padding()
-//                .frame(width: proxy.size.width, height: proxy.size.height / 3)
             }.onAppear(perform: {
                 images = loadImages()
             })
             
+            Spacer()
             
             ZStack() {
                 Circle()
@@ -158,7 +154,11 @@ struct OnCircularView: View  {
                     .trim(from: 0, to: CGFloat(batteryModel.level))
                     .stroke(batteryModel.level > 0.5 ? Color.green : Color.orange, lineWidth: 3)
                     .rotationEffect(.degrees(-90))
-                    .overlay(Text("\(Int(round(batteryModel.level * 100)))%")
+                    .overlay(
+                        VStack(spacing: 10) {
+                            Text("\(Int(round(batteryModel.level * 100)))%")
+                            Text("Total Image: \(images.count)")
+                        }
                                 .foregroundColor(Color.white))
                 
                 Circle()
@@ -170,10 +170,6 @@ struct OnCircularView: View  {
                 
             }.padding(20)
             .frame(height: 300)
-            
-            Spacer()
-            Spacer()
-            Spacer()
             
             Button(action: {
                 picker.toggle()

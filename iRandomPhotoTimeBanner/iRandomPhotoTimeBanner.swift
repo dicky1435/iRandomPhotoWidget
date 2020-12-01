@@ -115,7 +115,7 @@ struct widgetEntryView : View {
                 LinearGradient(gradient: gradient,
                                startPoint: .top,
                                endPoint: .bottom)
-                    .frame(height: 100)
+                    .frame(height: 80)
             }
             
            
@@ -181,7 +181,7 @@ struct widget: Widget {
             
         }
         .configurationDisplayName("My Widget")
-        .supportedFamilies([.systemSmall, .systemMedium, .systemLarge])
+        .supportedFamilies([.systemSmall, .systemLarge])
         .description("This is an example widget.")
     }
 }
