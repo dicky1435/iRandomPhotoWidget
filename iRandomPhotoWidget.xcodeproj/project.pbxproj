@@ -1,0 +1,761 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		8ECC872425761539006BC2B2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECC872325761539006BC2B2 /* AppDelegate.swift */; };
+		8ECC872625761539006BC2B2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECC872525761539006BC2B2 /* SceneDelegate.swift */; };
+		8ECC872825761539006BC2B2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECC872725761539006BC2B2 /* ContentView.swift */; };
+		8ECC872A2576153A006BC2B2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8ECC87292576153A006BC2B2 /* Assets.xcassets */; };
+		8ECC872D2576153A006BC2B2 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8ECC872C2576153A006BC2B2 /* Preview Assets.xcassets */; };
+		8ECC873B2576153A006BC2B2 /* iRandomPhotoWidgetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECC873A2576153A006BC2B2 /* iRandomPhotoWidgetTests.swift */; };
+		8ECC87462576153A006BC2B2 /* iRandomPhotoWidgetUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECC87452576153A006BC2B2 /* iRandomPhotoWidgetUITests.swift */; };
+		8ECC8760257615EF006BC2B2 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8ECC875F257615EF006BC2B2 /* WidgetKit.framework */; };
+		8ECC8762257615EF006BC2B2 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8ECC8761257615EF006BC2B2 /* SwiftUI.framework */; };
+		8ECC8765257615EF006BC2B2 /* iRandomPhotoTimeBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECC8764257615EF006BC2B2 /* iRandomPhotoTimeBanner.swift */; };
+		8ECC8768257615F2006BC2B2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8ECC8767257615F2006BC2B2 /* Assets.xcassets */; };
+		8ECC876A257615F2006BC2B2 /* iRandomPhotoTimeBanner.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 8ECC8766257615EF006BC2B2 /* iRandomPhotoTimeBanner.intentdefinition */; };
+		8ECC876B257615F2006BC2B2 /* iRandomPhotoTimeBanner.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 8ECC8766257615EF006BC2B2 /* iRandomPhotoTimeBanner.intentdefinition */; };
+		8ECC876E257615F2006BC2B2 /* iRandomPhotoTimeBannerExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 8ECC875D257615EF006BC2B2 /* iRandomPhotoTimeBannerExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		8ECC87372576153A006BC2B2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8ECC871825761539006BC2B2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8ECC871F25761539006BC2B2;
+			remoteInfo = iRandomPhotoWidget;
+		};
+		8ECC87422576153A006BC2B2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8ECC871825761539006BC2B2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8ECC871F25761539006BC2B2;
+			remoteInfo = iRandomPhotoWidget;
+		};
+		8ECC876C257615F2006BC2B2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8ECC871825761539006BC2B2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8ECC875C257615EF006BC2B2;
+			remoteInfo = iRandomPhotoTimeBannerExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		8ECC8772257615F2006BC2B2 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				8ECC876E257615F2006BC2B2 /* iRandomPhotoTimeBannerExtension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		8ECC872025761539006BC2B2 /* iRandomPhotoWidget.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iRandomPhotoWidget.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8ECC872325761539006BC2B2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		8ECC872525761539006BC2B2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		8ECC872725761539006BC2B2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		8ECC87292576153A006BC2B2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		8ECC872C2576153A006BC2B2 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		8ECC87312576153A006BC2B2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8ECC87362576153A006BC2B2 /* iRandomPhotoWidgetTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iRandomPhotoWidgetTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8ECC873A2576153A006BC2B2 /* iRandomPhotoWidgetTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iRandomPhotoWidgetTests.swift; sourceTree = "<group>"; };
+		8ECC873C2576153A006BC2B2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8ECC87412576153A006BC2B2 /* iRandomPhotoWidgetUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iRandomPhotoWidgetUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8ECC87452576153A006BC2B2 /* iRandomPhotoWidgetUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iRandomPhotoWidgetUITests.swift; sourceTree = "<group>"; };
+		8ECC87472576153A006BC2B2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8ECC875D257615EF006BC2B2 /* iRandomPhotoTimeBannerExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = iRandomPhotoTimeBannerExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		8ECC875F257615EF006BC2B2 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		8ECC8761257615EF006BC2B2 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		8ECC8764257615EF006BC2B2 /* iRandomPhotoTimeBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iRandomPhotoTimeBanner.swift; sourceTree = "<group>"; };
+		8ECC8766257615EF006BC2B2 /* iRandomPhotoTimeBanner.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = iRandomPhotoTimeBanner.intentdefinition; sourceTree = "<group>"; };
+		8ECC8767257615F2006BC2B2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		8ECC8769257615F2006BC2B2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8ECC87772576163A006BC2B2 /* iRandomPhotoWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = iRandomPhotoWidget.entitlements; sourceTree = "<group>"; };
+		8ECC877C25761670006BC2B2 /* iRandomPhotoTimeBannerExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = iRandomPhotoTimeBannerExtension.entitlements; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8ECC871D25761539006BC2B2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8ECC87332576153A006BC2B2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8ECC873E2576153A006BC2B2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8ECC875A257615EF006BC2B2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8ECC8762257615EF006BC2B2 /* SwiftUI.framework in Frameworks */,
+				8ECC8760257615EF006BC2B2 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		8ECC871725761539006BC2B2 = {
+			isa = PBXGroup;
+			children = (
+				8ECC877C25761670006BC2B2 /* iRandomPhotoTimeBannerExtension.entitlements */,
+				8ECC872225761539006BC2B2 /* iRandomPhotoWidget */,
+				8ECC87392576153A006BC2B2 /* iRandomPhotoWidgetTests */,
+				8ECC87442576153A006BC2B2 /* iRandomPhotoWidgetUITests */,
+				8ECC8763257615EF006BC2B2 /* iRandomPhotoTimeBanner */,
+				8ECC875E257615EF006BC2B2 /* Frameworks */,
+				8ECC872125761539006BC2B2 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		8ECC872125761539006BC2B2 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8ECC872025761539006BC2B2 /* iRandomPhotoWidget.app */,
+				8ECC87362576153A006BC2B2 /* iRandomPhotoWidgetTests.xctest */,
+				8ECC87412576153A006BC2B2 /* iRandomPhotoWidgetUITests.xctest */,
+				8ECC875D257615EF006BC2B2 /* iRandomPhotoTimeBannerExtension.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8ECC872225761539006BC2B2 /* iRandomPhotoWidget */ = {
+			isa = PBXGroup;
+			children = (
+				8ECC87772576163A006BC2B2 /* iRandomPhotoWidget.entitlements */,
+				8ECC872325761539006BC2B2 /* AppDelegate.swift */,
+				8ECC872525761539006BC2B2 /* SceneDelegate.swift */,
+				8ECC872725761539006BC2B2 /* ContentView.swift */,
+				8ECC87292576153A006BC2B2 /* Assets.xcassets */,
+				8ECC87312576153A006BC2B2 /* Info.plist */,
+				8ECC872B2576153A006BC2B2 /* Preview Content */,
+			);
+			path = iRandomPhotoWidget;
+			sourceTree = "<group>";
+		};
+		8ECC872B2576153A006BC2B2 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				8ECC872C2576153A006BC2B2 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		8ECC87392576153A006BC2B2 /* iRandomPhotoWidgetTests */ = {
+			isa = PBXGroup;
+			children = (
+				8ECC873A2576153A006BC2B2 /* iRandomPhotoWidgetTests.swift */,
+				8ECC873C2576153A006BC2B2 /* Info.plist */,
+			);
+			path = iRandomPhotoWidgetTests;
+			sourceTree = "<group>";
+		};
+		8ECC87442576153A006BC2B2 /* iRandomPhotoWidgetUITests */ = {
+			isa = PBXGroup;
+			children = (
+				8ECC87452576153A006BC2B2 /* iRandomPhotoWidgetUITests.swift */,
+				8ECC87472576153A006BC2B2 /* Info.plist */,
+			);
+			path = iRandomPhotoWidgetUITests;
+			sourceTree = "<group>";
+		};
+		8ECC875E257615EF006BC2B2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8ECC875F257615EF006BC2B2 /* WidgetKit.framework */,
+				8ECC8761257615EF006BC2B2 /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8ECC8763257615EF006BC2B2 /* iRandomPhotoTimeBanner */ = {
+			isa = PBXGroup;
+			children = (
+				8ECC8764257615EF006BC2B2 /* iRandomPhotoTimeBanner.swift */,
+				8ECC8766257615EF006BC2B2 /* iRandomPhotoTimeBanner.intentdefinition */,
+				8ECC8767257615F2006BC2B2 /* Assets.xcassets */,
+				8ECC8769257615F2006BC2B2 /* Info.plist */,
+			);
+			path = iRandomPhotoTimeBanner;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8ECC871F25761539006BC2B2 /* iRandomPhotoWidget */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8ECC874A2576153A006BC2B2 /* Build configuration list for PBXNativeTarget "iRandomPhotoWidget" */;
+			buildPhases = (
+				8ECC871C25761539006BC2B2 /* Sources */,
+				8ECC871D25761539006BC2B2 /* Frameworks */,
+				8ECC871E25761539006BC2B2 /* Resources */,
+				8ECC8772257615F2006BC2B2 /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8ECC876D257615F2006BC2B2 /* PBXTargetDependency */,
+			);
+			name = iRandomPhotoWidget;
+			productName = iRandomPhotoWidget;
+			productReference = 8ECC872025761539006BC2B2 /* iRandomPhotoWidget.app */;
+			productType = "com.apple.product-type.application";
+		};
+		8ECC87352576153A006BC2B2 /* iRandomPhotoWidgetTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8ECC874D2576153A006BC2B2 /* Build configuration list for PBXNativeTarget "iRandomPhotoWidgetTests" */;
+			buildPhases = (
+				8ECC87322576153A006BC2B2 /* Sources */,
+				8ECC87332576153A006BC2B2 /* Frameworks */,
+				8ECC87342576153A006BC2B2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8ECC87382576153A006BC2B2 /* PBXTargetDependency */,
+			);
+			name = iRandomPhotoWidgetTests;
+			productName = iRandomPhotoWidgetTests;
+			productReference = 8ECC87362576153A006BC2B2 /* iRandomPhotoWidgetTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		8ECC87402576153A006BC2B2 /* iRandomPhotoWidgetUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8ECC87502576153A006BC2B2 /* Build configuration list for PBXNativeTarget "iRandomPhotoWidgetUITests" */;
+			buildPhases = (
+				8ECC873D2576153A006BC2B2 /* Sources */,
+				8ECC873E2576153A006BC2B2 /* Frameworks */,
+				8ECC873F2576153A006BC2B2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8ECC87432576153A006BC2B2 /* PBXTargetDependency */,
+			);
+			name = iRandomPhotoWidgetUITests;
+			productName = iRandomPhotoWidgetUITests;
+			productReference = 8ECC87412576153A006BC2B2 /* iRandomPhotoWidgetUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		8ECC875C257615EF006BC2B2 /* iRandomPhotoTimeBannerExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8ECC876F257615F2006BC2B2 /* Build configuration list for PBXNativeTarget "iRandomPhotoTimeBannerExtension" */;
+			buildPhases = (
+				8ECC8759257615EF006BC2B2 /* Sources */,
+				8ECC875A257615EF006BC2B2 /* Frameworks */,
+				8ECC875B257615EF006BC2B2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = iRandomPhotoTimeBannerExtension;
+			productName = iRandomPhotoTimeBannerExtension;
+			productReference = 8ECC875D257615EF006BC2B2 /* iRandomPhotoTimeBannerExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		8ECC871825761539006BC2B2 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1220;
+				LastUpgradeCheck = 1220;
+				TargetAttributes = {
+					8ECC871F25761539006BC2B2 = {
+						CreatedOnToolsVersion = 12.2;
+					};
+					8ECC87352576153A006BC2B2 = {
+						CreatedOnToolsVersion = 12.2;
+						TestTargetID = 8ECC871F25761539006BC2B2;
+					};
+					8ECC87402576153A006BC2B2 = {
+						CreatedOnToolsVersion = 12.2;
+						TestTargetID = 8ECC871F25761539006BC2B2;
+					};
+					8ECC875C257615EF006BC2B2 = {
+						CreatedOnToolsVersion = 12.2;
+					};
+				};
+			};
+			buildConfigurationList = 8ECC871B25761539006BC2B2 /* Build configuration list for PBXProject "iRandomPhotoWidget" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 8ECC871725761539006BC2B2;
+			productRefGroup = 8ECC872125761539006BC2B2 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8ECC871F25761539006BC2B2 /* iRandomPhotoWidget */,
+				8ECC87352576153A006BC2B2 /* iRandomPhotoWidgetTests */,
+				8ECC87402576153A006BC2B2 /* iRandomPhotoWidgetUITests */,
+				8ECC875C257615EF006BC2B2 /* iRandomPhotoTimeBannerExtension */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8ECC871E25761539006BC2B2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8ECC872D2576153A006BC2B2 /* Preview Assets.xcassets in Resources */,
+				8ECC872A2576153A006BC2B2 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8ECC87342576153A006BC2B2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8ECC873F2576153A006BC2B2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8ECC875B257615EF006BC2B2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8ECC8768257615F2006BC2B2 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8ECC871C25761539006BC2B2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8ECC872425761539006BC2B2 /* AppDelegate.swift in Sources */,
+				8ECC876B257615F2006BC2B2 /* iRandomPhotoTimeBanner.intentdefinition in Sources */,
+				8ECC872625761539006BC2B2 /* SceneDelegate.swift in Sources */,
+				8ECC872825761539006BC2B2 /* ContentView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8ECC87322576153A006BC2B2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8ECC873B2576153A006BC2B2 /* iRandomPhotoWidgetTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8ECC873D2576153A006BC2B2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8ECC87462576153A006BC2B2 /* iRandomPhotoWidgetUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8ECC8759257615EF006BC2B2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8ECC8765257615EF006BC2B2 /* iRandomPhotoTimeBanner.swift in Sources */,
+				8ECC876A257615F2006BC2B2 /* iRandomPhotoTimeBanner.intentdefinition in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		8ECC87382576153A006BC2B2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8ECC871F25761539006BC2B2 /* iRandomPhotoWidget */;
+			targetProxy = 8ECC87372576153A006BC2B2 /* PBXContainerItemProxy */;
+		};
+		8ECC87432576153A006BC2B2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8ECC871F25761539006BC2B2 /* iRandomPhotoWidget */;
+			targetProxy = 8ECC87422576153A006BC2B2 /* PBXContainerItemProxy */;
+		};
+		8ECC876D257615F2006BC2B2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8ECC875C257615EF006BC2B2 /* iRandomPhotoTimeBannerExtension */;
+			targetProxy = 8ECC876C257615F2006BC2B2 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		8ECC87482576153A006BC2B2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		8ECC87492576153A006BC2B2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		8ECC874B2576153A006BC2B2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = iRandomPhotoWidget/iRandomPhotoWidget.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"iRandomPhotoWidget/Preview Content\"";
+				DEVELOPMENT_TEAM = 25889SGWKU;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = iRandomPhotoWidget/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.dicky.iRandomPhotoWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		8ECC874C2576153A006BC2B2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = iRandomPhotoWidget/iRandomPhotoWidget.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"iRandomPhotoWidget/Preview Content\"";
+				DEVELOPMENT_TEAM = 25889SGWKU;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = iRandomPhotoWidget/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.dicky.iRandomPhotoWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		8ECC874E2576153A006BC2B2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 25889SGWKU;
+				INFOPLIST_FILE = iRandomPhotoWidgetTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.dicky.iRandomPhotoWidgetTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/iRandomPhotoWidget.app/iRandomPhotoWidget";
+			};
+			name = Debug;
+		};
+		8ECC874F2576153A006BC2B2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 25889SGWKU;
+				INFOPLIST_FILE = iRandomPhotoWidgetTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.dicky.iRandomPhotoWidgetTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/iRandomPhotoWidget.app/iRandomPhotoWidget";
+			};
+			name = Release;
+		};
+		8ECC87512576153A006BC2B2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 25889SGWKU;
+				INFOPLIST_FILE = iRandomPhotoWidgetUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.dicky.iRandomPhotoWidgetUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = iRandomPhotoWidget;
+			};
+			name = Debug;
+		};
+		8ECC87522576153A006BC2B2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 25889SGWKU;
+				INFOPLIST_FILE = iRandomPhotoWidgetUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.dicky.iRandomPhotoWidgetUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = iRandomPhotoWidget;
+			};
+			name = Release;
+		};
+		8ECC8770257615F2006BC2B2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = iRandomPhotoTimeBannerExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 25889SGWKU;
+				INFOPLIST_FILE = iRandomPhotoTimeBanner/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.dicky.iRandomPhotoWidget.iRandomPhotoTimeBanner;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		8ECC8771257615F2006BC2B2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = iRandomPhotoTimeBannerExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 25889SGWKU;
+				INFOPLIST_FILE = iRandomPhotoTimeBanner/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.dicky.iRandomPhotoWidget.iRandomPhotoTimeBanner;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		8ECC871B25761539006BC2B2 /* Build configuration list for PBXProject "iRandomPhotoWidget" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8ECC87482576153A006BC2B2 /* Debug */,
+				8ECC87492576153A006BC2B2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8ECC874A2576153A006BC2B2 /* Build configuration list for PBXNativeTarget "iRandomPhotoWidget" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8ECC874B2576153A006BC2B2 /* Debug */,
+				8ECC874C2576153A006BC2B2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8ECC874D2576153A006BC2B2 /* Build configuration list for PBXNativeTarget "iRandomPhotoWidgetTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8ECC874E2576153A006BC2B2 /* Debug */,
+				8ECC874F2576153A006BC2B2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8ECC87502576153A006BC2B2 /* Build configuration list for PBXNativeTarget "iRandomPhotoWidgetUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8ECC87512576153A006BC2B2 /* Debug */,
+				8ECC87522576153A006BC2B2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8ECC876F257615F2006BC2B2 /* Build configuration list for PBXNativeTarget "iRandomPhotoTimeBannerExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8ECC8770257615F2006BC2B2 /* Debug */,
+				8ECC8771257615F2006BC2B2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 8ECC871825761539006BC2B2 /* Project object */;
+}
