@@ -9,6 +9,7 @@ import SwiftUI
 import Combine
 import PhotosUI
 import WidgetKit
+import ProgressHUD
 
 class BatteryModel : ObservableObject {
     @Published var level = UIDevice.current.batteryLevel
@@ -33,19 +34,23 @@ struct ContentView: View {
     @State var goToHome = false
     @State var animate = false
     @State var endSplash = false
+    
     var body: some View {
-
+            
         ZStack{
             
             ZStack {
                 Rectangle()
                     .fill(Color.init(red: 34/255, green: 30/255, blue: 47/255))
                     .edgesIgnoringSafeArea(.all)
-                if goToHome{
-                    OnCircularView()
-                }else{
-                    OnBoardScreen()
-                }
+                //if goToHome{
+                OnCircularView().onAppear(perform:{
+                    ProgressHUD.animationType = .circleSpinFade
+                    ProgressHUD.colorAnimation = UIColor(red: 34/255, green: 30/255, blue: 47/255, alpha: 1)
+                })
+                //                }else{
+                //                    OnBoardScreen()
+                //                }
             }
             .onReceive(NotificationCenter.default.publisher(for: NSNotification.Name("Success")), perform: { _ in
                 withAnimation{self.goToHome = true}
@@ -93,6 +98,7 @@ struct OnCircularView: View  {
     @State var images : [UIImage] = [UIImage (named: "endgame")!]
     @State var picker = false
     @State var alertBox = false
+    @State var setting = false
     @ObservedObject var batteryModel = BatteryModel()
     let key = "randomImage"
     
@@ -117,6 +123,10 @@ struct OnCircularView: View  {
     
     var body: some View {
         
+        ZStack(){
+            
+        }.fullScreenCover(isPresented: $setting, content: SettingTableView.init)
+        
         VStack(spacing: 20){
             Spacer()
             Spacer()
@@ -124,21 +134,42 @@ struct OnCircularView: View  {
             Spacer()
             Spacer()
             
+//            GeometryReader { proxy in
+//                ScrollView(.horizontal, showsIndicators: false, content: {
+//                    HStack() {
+//                        ForEach(images.indices, id: \.self) { (index) in
+//                            Image(uiImage: images[index])
+//                                .resizable()
+//                                .aspectRatio(contentMode: .fit)
+//                                .overlay(Color.black.opacity(0.4))
+//                                .frame(width: proxy.size.width, height: 300)
+//                        }
+//                    }
+//                })
+//                .clipShape(RoundedRectangle(cornerRadius: 10))
+//                .padding()
+//                .frame(width: proxy.size.width, height: proxy.size.height / 3)
+//            }.onAppear(perform: {
+//                images = loadImages()
+//            })
+            
             GeometryReader { proxy in
-                ScrollView(.horizontal, showsIndicators: false, content: {
-                    HStack() {
+                if (images.count != 0){
+                    TabView{
                         ForEach(images.indices, id: \.self) { (index) in
                             Image(uiImage: images[index])
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
                                 .overlay(Color.black.opacity(0.4))
                                 .frame(width: proxy.size.width, height: 300)
+                                .tag(index)
                         }
                     }
-                })
-                .clipShape(RoundedRectangle(cornerRadius: 10))
-                .padding()
-                .frame(width: proxy.size.width, height: proxy.size.height / 3)
+                    .tabViewStyle(PageTabViewStyle())
+                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                    .padding()
+                    .frame(width: proxy.size.width, height: proxy.size.height / 3)
+                }
             }.onAppear(perform: {
                 images = loadImages()
             })
@@ -157,7 +188,18 @@ struct OnCircularView: View  {
                     .overlay(
                         VStack(spacing: 10) {
                             Text("\(Int(round(batteryModel.level * 100)))%")
-                            Text("Total Image: \(images.count)")
+                            Text("Total Images: \(images.count)")
+                            Button(action: {
+                                self.setting.toggle()
+                            }) {
+                                HStack {
+                                    Image(systemName: "gearshape.fill")
+                                        .font(.title)
+                                }
+                                .frame(minWidth: 20, maxWidth: 20, minHeight: 20, maxHeight: 20)
+                                .foregroundColor(.white)
+                                .padding()
+                            }
                         }
                                 .foregroundColor(Color.white))
                 
@@ -170,6 +212,7 @@ struct OnCircularView: View  {
                 
             }.padding(20)
             .frame(height: 300)
+            
             
             Button(action: {
                 picker.toggle()
@@ -190,11 +233,17 @@ struct OnCircularView: View  {
             }
         }.sheet(isPresented: $picker) {
             ImagePicker(alertBox: $alertBox, images: $images, picker: $picker)
-        }.alert(isPresented: $alertBox) {
-            Alert(title: Text("Photos saved!"), dismissButton: .default(Text("OK")) {
-                alertBox = false
-            })
         }
+//        .alert(isPresented: $alertBox) {
+//            if (alertBox) {
+//                ProgressHUD.showSucceed()
+//                alertBox = false
+//            }
+            
+//            Alert(title: Text("Photos saved!"), dismissButton: .default(Text("OK")) {
+//                alertBox = false
+//            })
+//        }
     }
 }
 
@@ -309,19 +358,20 @@ struct ImagePicker : UIViewControllerRepresentable {
     func makeUIViewController(context: Context) -> PHPickerViewController {
         var config = PHPickerConfiguration()
         config.filter = .images
-        config.selectionLimit = 0
+        config.selectionLimit = 100
         let picker = PHPickerViewController(configuration: config)
         picker.delegate = context.coordinator
         return picker
     }
     
     func updateUIViewController(_ uiViewController: PHPickerViewController, context: Context) {
-        
+
     }
     
     class Coordinator: NSObject,PHPickerViewControllerDelegate {
         
         let key = "randomImage"
+        var isPresented = 0
         
         var parent : ImagePicker
         var tempImages : [UIImage]
@@ -337,12 +387,12 @@ struct ImagePicker : UIViewControllerRepresentable {
 
         func saveImages(_ images:[UIImage]) -> Bool{
             var saveAction = false
-            removeImages()
             var list = UserDefaults(suiteName: "group.dicky.iRandomPhotoWidget")!.array(forKey: key) as? [String] ?? [String]()
             list.removeAll()
             var index = list.count
             
             for image in images {
+                
                 let imgKey = getImageKey(index)
                 saveImage(imgKey, image)
                 list.append(imgKey)
@@ -353,9 +403,12 @@ struct ImagePicker : UIViewControllerRepresentable {
                     saveAction = true;
                 }
             }
+            print("count: \(index)")
+            
             return saveAction
         }
-
+        
+        
         func saveImage(_ imageName:String, _ image:UIImage) {
             if let shareUrl = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.dicky.iRandomPhotoWidget") {
                let imagePath = shareUrl.appendingPathComponent(imageName)
@@ -385,33 +438,47 @@ struct ImagePicker : UIViewControllerRepresentable {
         
         func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
             
-            parent.picker.toggle()
+            picker.dismiss(animated: true, completion: nil)
             
-            if (results.count > 0) {
-                self.parent.images.removeAll()
+            if(self.isPresented >= 1) {
+                return
             }
             
-            for img in results {
-                if img.itemProvider.canLoadObject(ofClass: UIImage.self) {
-                    img.itemProvider.loadObject(ofClass: UIImage.self) { (image,err) in
-                        DispatchQueue.main.async {
-                            guard image != nil else {
-                                return
-                            }
-                            self.parent.images.append(image as! UIImage)
-                            if (img == results.last) {
-                                if self.saveImages(self.parent.images) {
-                                    self.parent.alertBox = true
-                                    WidgetCenter.shared.reloadAllTimelines()
+            if (self.isPresented < 1) {
+                isPresented+=1
+                
+                if (results.count > 0) {
+                    ProgressHUD.show()
+                    self.parent.images.removeAll()
+                    removeImages()
+                    
+                    for img in results {
+                        if img.itemProvider.canLoadObject(ofClass: UIImage.self) {
+                            img.itemProvider.loadObject(ofClass: UIImage.self) { (image,err) in
+                                DispatchQueue.main.async {
+                                    guard image != nil else {
+                                        return
+                                    }
+                                    self.parent.images.append(image as! UIImage)
+                                    if (self.parent.images.count == results.count) {
+                                        print("results:\(self.parent.images.count)")
+                                        if self.saveImages(self.parent.images) {
+                                            ProgressHUD.showSucceed("Photos Saved!")
+                                            self.parent.alertBox = true
+                                            WidgetCenter.shared.reloadAllTimelines()
+                                        }
+                                        
+                                    }
                                 }
                             }
+                        } else {
+                            
                         }
                     }
-                } else {
-                    
                 }
+                
+     
             }
-            
         }
     }
 }

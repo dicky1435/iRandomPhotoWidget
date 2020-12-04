@@ -3,10 +3,13 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		157EBCAE48661F5177056E17 /* Pods_iRandomPhotoWidget_iRandomPhotoWidgetUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B76331E0D0ADCF8F5C21E6EF /* Pods_iRandomPhotoWidget_iRandomPhotoWidgetUITests.framework */; };
+		50E3021AFC8DB61A5BBE221B /* Pods_iRandomPhotoTimeBannerExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 033E955F5747AEBD1627748B /* Pods_iRandomPhotoTimeBannerExtension.framework */; };
+		8E262B9E2579E90300F7F1A6 /* SettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E262B9D2579E90300F7F1A6 /* SettingTableViewController.swift */; };
 		8ECC872425761539006BC2B2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECC872325761539006BC2B2 /* AppDelegate.swift */; };
 		8ECC872625761539006BC2B2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECC872525761539006BC2B2 /* SceneDelegate.swift */; };
 		8ECC872825761539006BC2B2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECC872725761539006BC2B2 /* ContentView.swift */; };
@@ -21,6 +24,8 @@
 		8ECC876A257615F2006BC2B2 /* iRandomPhotoTimeBanner.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 8ECC8766257615EF006BC2B2 /* iRandomPhotoTimeBanner.intentdefinition */; };
 		8ECC876B257615F2006BC2B2 /* iRandomPhotoTimeBanner.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 8ECC8766257615EF006BC2B2 /* iRandomPhotoTimeBanner.intentdefinition */; };
 		8ECC876E257615F2006BC2B2 /* iRandomPhotoTimeBannerExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 8ECC875D257615EF006BC2B2 /* iRandomPhotoTimeBannerExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		9FE2C6144B5EBA2412553454 /* Pods_iRandomPhotoWidget.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19221BC6BBBE72526BF8D0E8 /* Pods_iRandomPhotoWidget.framework */; };
+		DD1740C7D4D6DE53073D4CE3 /* Pods_iRandomPhotoWidgetTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E5786BCF78C03D64C712BF7 /* Pods_iRandomPhotoWidgetTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +67,17 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		033E955F5747AEBD1627748B /* Pods_iRandomPhotoTimeBannerExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iRandomPhotoTimeBannerExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0C1149AA9910FFE8FB7F7BED /* Pods-iRandomPhotoWidgetTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iRandomPhotoWidgetTests.debug.xcconfig"; path = "Target Support Files/Pods-iRandomPhotoWidgetTests/Pods-iRandomPhotoWidgetTests.debug.xcconfig"; sourceTree = "<group>"; };
+		11964F4D60C4CECAB7F602ED /* Pods-iRandomPhotoWidget.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iRandomPhotoWidget.debug.xcconfig"; path = "Target Support Files/Pods-iRandomPhotoWidget/Pods-iRandomPhotoWidget.debug.xcconfig"; sourceTree = "<group>"; };
+		19221BC6BBBE72526BF8D0E8 /* Pods_iRandomPhotoWidget.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iRandomPhotoWidget.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4248B67B8FF72621836EE47D /* Pods-iRandomPhotoWidget-iRandomPhotoWidgetUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iRandomPhotoWidget-iRandomPhotoWidgetUITests.debug.xcconfig"; path = "Target Support Files/Pods-iRandomPhotoWidget-iRandomPhotoWidgetUITests/Pods-iRandomPhotoWidget-iRandomPhotoWidgetUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		4A7D80EC0F0D65459C32DAFC /* Pods-iRandomPhotoTimeBannerExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iRandomPhotoTimeBannerExtension.debug.xcconfig"; path = "Target Support Files/Pods-iRandomPhotoTimeBannerExtension/Pods-iRandomPhotoTimeBannerExtension.debug.xcconfig"; sourceTree = "<group>"; };
+		805F569EBE4FE2F718B41421 /* Pods-iRandomPhotoWidget.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iRandomPhotoWidget.release.xcconfig"; path = "Target Support Files/Pods-iRandomPhotoWidget/Pods-iRandomPhotoWidget.release.xcconfig"; sourceTree = "<group>"; };
+		89DE029B7D44FED05CFA4665 /* Pods-iRandomPhotoWidget-iRandomPhotoWidgetUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iRandomPhotoWidget-iRandomPhotoWidgetUITests.release.xcconfig"; path = "Target Support Files/Pods-iRandomPhotoWidget-iRandomPhotoWidgetUITests/Pods-iRandomPhotoWidget-iRandomPhotoWidgetUITests.release.xcconfig"; sourceTree = "<group>"; };
+		8B623070A9587519F98FE124 /* Pods-iRandomPhotoWidgetTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iRandomPhotoWidgetTests.release.xcconfig"; path = "Target Support Files/Pods-iRandomPhotoWidgetTests/Pods-iRandomPhotoWidgetTests.release.xcconfig"; sourceTree = "<group>"; };
+		8E262B9D2579E90300F7F1A6 /* SettingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewController.swift; sourceTree = "<group>"; };
+		8E5786BCF78C03D64C712BF7 /* Pods_iRandomPhotoWidgetTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iRandomPhotoWidgetTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8ECC872025761539006BC2B2 /* iRandomPhotoWidget.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iRandomPhotoWidget.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8ECC872325761539006BC2B2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8ECC872525761539006BC2B2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -84,6 +100,8 @@
 		8ECC8769257615F2006BC2B2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8ECC87772576163A006BC2B2 /* iRandomPhotoWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = iRandomPhotoWidget.entitlements; sourceTree = "<group>"; };
 		8ECC877C25761670006BC2B2 /* iRandomPhotoTimeBannerExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = iRandomPhotoTimeBannerExtension.entitlements; sourceTree = "<group>"; };
+		B76331E0D0ADCF8F5C21E6EF /* Pods_iRandomPhotoWidget_iRandomPhotoWidgetUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iRandomPhotoWidget_iRandomPhotoWidgetUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FF2D778F60B155CAE43E3B6C /* Pods-iRandomPhotoTimeBannerExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iRandomPhotoTimeBannerExtension.release.xcconfig"; path = "Target Support Files/Pods-iRandomPhotoTimeBannerExtension/Pods-iRandomPhotoTimeBannerExtension.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +109,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9FE2C6144B5EBA2412553454 /* Pods_iRandomPhotoWidget.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -98,6 +117,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DD1740C7D4D6DE53073D4CE3 /* Pods_iRandomPhotoWidgetTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -105,6 +125,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				157EBCAE48661F5177056E17 /* Pods_iRandomPhotoWidget_iRandomPhotoWidgetUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -114,6 +135,7 @@
 			files = (
 				8ECC8762257615EF006BC2B2 /* SwiftUI.framework in Frameworks */,
 				8ECC8760257615EF006BC2B2 /* WidgetKit.framework in Frameworks */,
+				50E3021AFC8DB61A5BBE221B /* Pods_iRandomPhotoTimeBannerExtension.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -130,6 +152,7 @@
 				8ECC8763257615EF006BC2B2 /* iRandomPhotoTimeBanner */,
 				8ECC875E257615EF006BC2B2 /* Frameworks */,
 				8ECC872125761539006BC2B2 /* Products */,
+				A25D6656D0D7B035338B56D3 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -151,6 +174,7 @@
 				8ECC872325761539006BC2B2 /* AppDelegate.swift */,
 				8ECC872525761539006BC2B2 /* SceneDelegate.swift */,
 				8ECC872725761539006BC2B2 /* ContentView.swift */,
+				8E262B9D2579E90300F7F1A6 /* SettingTableViewController.swift */,
 				8ECC87292576153A006BC2B2 /* Assets.xcassets */,
 				8ECC87312576153A006BC2B2 /* Info.plist */,
 				8ECC872B2576153A006BC2B2 /* Preview Content */,
@@ -189,6 +213,10 @@
 			children = (
 				8ECC875F257615EF006BC2B2 /* WidgetKit.framework */,
 				8ECC8761257615EF006BC2B2 /* SwiftUI.framework */,
+				033E955F5747AEBD1627748B /* Pods_iRandomPhotoTimeBannerExtension.framework */,
+				19221BC6BBBE72526BF8D0E8 /* Pods_iRandomPhotoWidget.framework */,
+				B76331E0D0ADCF8F5C21E6EF /* Pods_iRandomPhotoWidget_iRandomPhotoWidgetUITests.framework */,
+				8E5786BCF78C03D64C712BF7 /* Pods_iRandomPhotoWidgetTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -204,6 +232,21 @@
 			path = iRandomPhotoTimeBanner;
 			sourceTree = "<group>";
 		};
+		A25D6656D0D7B035338B56D3 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				4A7D80EC0F0D65459C32DAFC /* Pods-iRandomPhotoTimeBannerExtension.debug.xcconfig */,
+				FF2D778F60B155CAE43E3B6C /* Pods-iRandomPhotoTimeBannerExtension.release.xcconfig */,
+				11964F4D60C4CECAB7F602ED /* Pods-iRandomPhotoWidget.debug.xcconfig */,
+				805F569EBE4FE2F718B41421 /* Pods-iRandomPhotoWidget.release.xcconfig */,
+				4248B67B8FF72621836EE47D /* Pods-iRandomPhotoWidget-iRandomPhotoWidgetUITests.debug.xcconfig */,
+				89DE029B7D44FED05CFA4665 /* Pods-iRandomPhotoWidget-iRandomPhotoWidgetUITests.release.xcconfig */,
+				0C1149AA9910FFE8FB7F7BED /* Pods-iRandomPhotoWidgetTests.debug.xcconfig */,
+				8B623070A9587519F98FE124 /* Pods-iRandomPhotoWidgetTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -211,10 +254,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8ECC874A2576153A006BC2B2 /* Build configuration list for PBXNativeTarget "iRandomPhotoWidget" */;
 			buildPhases = (
+				C12331CEAE0710B3CBD9EED2 /* [CP] Check Pods Manifest.lock */,
 				8ECC871C25761539006BC2B2 /* Sources */,
 				8ECC871D25761539006BC2B2 /* Frameworks */,
 				8ECC871E25761539006BC2B2 /* Resources */,
 				8ECC8772257615F2006BC2B2 /* Embed App Extensions */,
+				77226F04E7556955C305617E /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -230,6 +275,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8ECC874D2576153A006BC2B2 /* Build configuration list for PBXNativeTarget "iRandomPhotoWidgetTests" */;
 			buildPhases = (
+				8595425D1518980A45B7170F /* [CP] Check Pods Manifest.lock */,
 				8ECC87322576153A006BC2B2 /* Sources */,
 				8ECC87332576153A006BC2B2 /* Frameworks */,
 				8ECC87342576153A006BC2B2 /* Resources */,
@@ -248,9 +294,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8ECC87502576153A006BC2B2 /* Build configuration list for PBXNativeTarget "iRandomPhotoWidgetUITests" */;
 			buildPhases = (
+				185A9D004CACAEEFE703CA2A /* [CP] Check Pods Manifest.lock */,
 				8ECC873D2576153A006BC2B2 /* Sources */,
 				8ECC873E2576153A006BC2B2 /* Frameworks */,
 				8ECC873F2576153A006BC2B2 /* Resources */,
+				3631FC444A381C693ABF2B63 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -266,6 +314,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8ECC876F257615F2006BC2B2 /* Build configuration list for PBXNativeTarget "iRandomPhotoTimeBannerExtension" */;
 			buildPhases = (
+				77752DA51FDD004559FF2BD6 /* [CP] Check Pods Manifest.lock */,
 				8ECC8759257615EF006BC2B2 /* Sources */,
 				8ECC875A257615EF006BC2B2 /* Frameworks */,
 				8ECC875B257615EF006BC2B2 /* Resources */,
@@ -359,11 +408,137 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		185A9D004CACAEEFE703CA2A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-iRandomPhotoWidget-iRandomPhotoWidgetUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3631FC444A381C693ABF2B63 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-iRandomPhotoWidget-iRandomPhotoWidgetUITests/Pods-iRandomPhotoWidget-iRandomPhotoWidgetUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-iRandomPhotoWidget-iRandomPhotoWidgetUITests/Pods-iRandomPhotoWidget-iRandomPhotoWidgetUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-iRandomPhotoWidget-iRandomPhotoWidgetUITests/Pods-iRandomPhotoWidget-iRandomPhotoWidgetUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		77226F04E7556955C305617E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-iRandomPhotoWidget/Pods-iRandomPhotoWidget-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-iRandomPhotoWidget/Pods-iRandomPhotoWidget-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-iRandomPhotoWidget/Pods-iRandomPhotoWidget-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		77752DA51FDD004559FF2BD6 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-iRandomPhotoTimeBannerExtension-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8595425D1518980A45B7170F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-iRandomPhotoWidgetTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C12331CEAE0710B3CBD9EED2 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-iRandomPhotoWidget-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		8ECC871C25761539006BC2B2 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8E262B9E2579E90300F7F1A6 /* SettingTableViewController.swift in Sources */,
 				8ECC872425761539006BC2B2 /* AppDelegate.swift in Sources */,
 				8ECC876B257615F2006BC2B2 /* iRandomPhotoTimeBanner.intentdefinition in Sources */,
 				8ECC872625761539006BC2B2 /* SceneDelegate.swift in Sources */,
@@ -420,6 +595,7 @@
 		8ECC87482576153A006BC2B2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -468,7 +644,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -481,6 +657,7 @@
 		8ECC87492576153A006BC2B2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -523,9 +700,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				OTHER_LDFLAGS = "$(inherited)";
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
@@ -535,6 +713,7 @@
 		};
 		8ECC874B2576153A006BC2B2 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 11964F4D60C4CECAB7F602ED /* Pods-iRandomPhotoWidget.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -558,6 +737,7 @@
 		};
 		8ECC874C2576153A006BC2B2 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 805F569EBE4FE2F718B41421 /* Pods-iRandomPhotoWidget.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -581,6 +761,7 @@
 		};
 		8ECC874E2576153A006BC2B2 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0C1149AA9910FFE8FB7F7BED /* Pods-iRandomPhotoWidgetTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -603,6 +784,7 @@
 		};
 		8ECC874F2576153A006BC2B2 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8B623070A9587519F98FE124 /* Pods-iRandomPhotoWidgetTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -625,6 +807,7 @@
 		};
 		8ECC87512576153A006BC2B2 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4248B67B8FF72621836EE47D /* Pods-iRandomPhotoWidget-iRandomPhotoWidgetUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -645,6 +828,7 @@
 		};
 		8ECC87522576153A006BC2B2 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 89DE029B7D44FED05CFA4665 /* Pods-iRandomPhotoWidget-iRandomPhotoWidgetUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -665,7 +849,9 @@
 		};
 		8ECC8770257615F2006BC2B2 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4A7D80EC0F0D65459C32DAFC /* Pods-iRandomPhotoTimeBannerExtension.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = iRandomPhotoTimeBannerExtension.entitlements;
@@ -687,7 +873,9 @@
 		};
 		8ECC8771257615F2006BC2B2 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FF2D778F60B155CAE43E3B6C /* Pods-iRandomPhotoTimeBannerExtension.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = iRandomPhotoTimeBannerExtension.entitlements;
