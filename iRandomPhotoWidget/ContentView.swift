@@ -29,7 +29,8 @@ class BatteryModel : ObservableObject {
 }
 
 struct ContentView: View {
-  
+    
+    @Environment(\.colorScheme) var colorScheme
     @ObservedObject var batteryModel = BatteryModel()
     @State var goToHome = false
     @State var animate = false
@@ -43,14 +44,18 @@ struct ContentView: View {
                 Rectangle()
                     .fill(Color.init(red: 34/255, green: 30/255, blue: 47/255))
                     .edgesIgnoringSafeArea(.all)
-                //if goToHome{
-                OnCircularView().onAppear(perform:{
-                    ProgressHUD.animationType = .circleSpinFade
-                    ProgressHUD.colorAnimation = UIColor(red: 34/255, green: 30/255, blue: 47/255, alpha: 1)
-                })
-                //                }else{
-                //                    OnBoardScreen()
-                //                }
+                if goToHome{
+                    OnCircularView().onAppear(perform:{
+                        ProgressHUD.animationType = .circleSpinFade
+                        if colorScheme == .dark {
+                            ProgressHUD.colorAnimation = UIColor(.white)
+                        } else {
+                            ProgressHUD.colorAnimation = UIColor(red: 34/255, green: 30/255, blue: 47/255, alpha: 1)
+                        }
+                    })
+                }else{
+                    OnBoardScreen()
+                }
             }
             .onReceive(NotificationCenter.default.publisher(for: NSNotification.Name("Success")), perform: { _ in
                 withAnimation{self.goToHome = true}
@@ -63,7 +68,7 @@ struct ContentView: View {
                     .resizable()
                     .renderingMode(.original)
                     .aspectRatio(contentMode: .fit)
-                    .frame(width: 85, height: 85)
+                    .frame(width: 200, height: 200)
                     .scaleEffect(animate ? 20 : 1)
                     .frame(width: UIScreen.main.bounds.width)
             }
@@ -76,11 +81,11 @@ struct ContentView: View {
     func animationSpalsh() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
             
-            withAnimation(Animation.easeOut(duration:1)){
+            withAnimation(Animation.easeOut(duration:1.5)){
                 animate.toggle()
             }
             
-            withAnimation(Animation.easeOut(duration:1)){
+            withAnimation(Animation.easeOut(duration:1.5)){
                 endSplash.toggle()
             }
         }
