@@ -35,6 +35,8 @@ struct ContentView: View {
     @State var goToHome = false
     @State var animate = false
     @State var endSplash = false
+    @State var imageList : [UIImage] = []
+    let key = "randomImage"
     
     var body: some View {
             
@@ -53,12 +55,16 @@ struct ContentView: View {
                             ProgressHUD.colorAnimation = UIColor(red: 34/255, green: 30/255, blue: 47/255, alpha: 1)
                         }
                     })
-                }else{
-                    OnBoardScreen()
+                } else {
+                    if (imageList.count > 0) {
+                        OnBoardScreen(image: imageList.first!)
+                    }
                 }
             }
             .onReceive(NotificationCenter.default.publisher(for: NSNotification.Name("Success")), perform: { _ in
-                withAnimation{self.goToHome = true}
+                withAnimation{
+                    self.goToHome = true
+                }
             })
             
             ZStack{
@@ -73,7 +79,13 @@ struct ContentView: View {
                     .frame(width: UIScreen.main.bounds.width)
             }
             .ignoresSafeArea(.all,edges: .all)
-            .onAppear(perform: animationSpalsh)
+            .onAppear(perform: {
+                animationSpalsh()
+                imageList = loadImage()
+                if (imageList.count == 0) {
+                    self.goToHome = true
+                }
+            })
             .opacity(endSplash ? 0 : 1)
         }
     }
@@ -91,6 +103,18 @@ struct ContentView: View {
         }
     }
     
+    func loadImage() -> [UIImage] {
+        let list = UserDefaults(suiteName: "group.dicky.iRandomPhotoWidget")!.array(forKey: key) as? [String] ?? [String]()
+        let imageName = list.randomElement()
+        var imageList = [UIImage]()
+        if let shareUrl = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.dicky.iRandomPhotoWidget") {
+            let imagePath = shareUrl.appendingPathComponent(imageName ?? "")
+            if let image = UIImage(contentsOfFile: imagePath.path) {
+                imageList.append(image)
+            }
+        }
+        return imageList
+    }
 }
 
 struct ContentView_Previews: PreviewProvider {
@@ -100,7 +124,7 @@ struct ContentView_Previews: PreviewProvider {
 }
 
 struct OnCircularView: View  {
-    @State var images : [UIImage] = [UIImage (named: "endgame")!]
+    @State var images : [UIImage] = []
     @State var picker = false
     @State var alertBox = false
     @State var setting = false
@@ -253,9 +277,9 @@ struct OnCircularView: View  {
 }
 
 struct OnBoardScreen: View {
-    
-    @State var maxWidth = UIScreen.main.bounds.width - 100
-    @State var offset : CGFloat = 0
+    @State var image = UIImage()
+    @State private var maxWidth = UIScreen.main.bounds.width - 100
+    @State private var offset : CGFloat = 0
     
     var body: some View{
         
@@ -265,16 +289,18 @@ struct OnBoardScreen: View {
                 .ignoresSafeArea(.all
                                  ,edges: .all)
             
+            Image(uiImage: image)
+                .resizable()
+                .scaledToFill()
+                //.aspectRatio(contentMode: .fill)
+                .frame(minWidth: 0, maxWidth: .infinity)
+                .frame(minHeight: 0, maxHeight: .infinity)
+                .ignoresSafeArea(.all
+                                 ,edges: .all)
             VStack {
-                Image(uiImage: UIImage(named: "infinity-war")!)
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .frame(minWidth: 0, maxWidth: .infinity)
-                    .frame(minHeight: 0, maxHeight: .infinity)
-                    .ignoresSafeArea(.all
-                                     ,edges: .all)
+
+                Spacer()
                 
-                // Slider
                 
                 ZStack {
                     Capsule()
@@ -288,7 +314,7 @@ struct OnBoardScreen: View {
 
                     HStack{
                         Capsule()
-                            .fill(Color(.red))
+                            .fill(Color.init(red: 34/255, green: 30/255, blue: 47/255))
                             .frame(width: calculateWidth() + 65)
 
                         Spacer(minLength: 0)
@@ -304,7 +330,7 @@ struct OnBoardScreen: View {
                         }.foregroundColor(.white)
                         .offset(x:5)
                         .frame(width: 65, height: 65)
-                        .background(Color(.red))
+                        .background(Color.init(red: 34/255, green: 30/255, blue: 47/255))
                         .clipShape(Circle())
                         .offset(x:offset)
                         .gesture(DragGesture().onChanged(onChanged(value:)).onEnded(onEnd(value:)))
