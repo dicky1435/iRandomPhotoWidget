@@ -180,9 +180,9 @@ struct widget: Widget {
             widgetEntryView(entry: entry)
             
         }
-        .configurationDisplayName("My Widget")
+        .configurationDisplayName("iRandomPhotoWidget")
         .supportedFamilies([.systemSmall, .systemLarge])
-        .description("This is an example widget.")
+        .description("Photo Slideshow Home Screen Widgets")
     }
 }
 
