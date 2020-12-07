@@ -59,7 +59,7 @@ struct SimpleEntry: TimelineEntry {
 
 struct widgetEntryView : View {
     var entry: Provider.Entry
-    @State var imageArray = [UIImage(named: "infinity-war"), UIImage(named: "endgame"), UIImage(named: "sun")];
+    @State var imageArray = [UIImage(named: "demoPhoto")];
     @Environment(\.widgetFamily) var family
     let key = "randomImage"
     

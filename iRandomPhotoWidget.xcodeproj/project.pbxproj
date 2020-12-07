@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		157EBCAE48661F5177056E17 /* Pods_iRandomPhotoWidget_iRandomPhotoWidgetUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B76331E0D0ADCF8F5C21E6EF /* Pods_iRandomPhotoWidget_iRandomPhotoWidgetUITests.framework */; };
 		50E3021AFC8DB61A5BBE221B /* Pods_iRandomPhotoTimeBannerExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 033E955F5747AEBD1627748B /* Pods_iRandomPhotoTimeBannerExtension.framework */; };
+		8E240EBB257E03A00046B92F /* Localizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E240EBA257E03A00046B92F /* Localizable.swift */; };
+		8E240ECA257E04070046B92F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8E240ECC257E04070046B92F /* Localizable.strings */; };
+		8E240EE2257E04B60046B92F /* BundleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E240EE1257E04B60046B92F /* BundleExtension.swift */; };
 		8E262B9E2579E90300F7F1A6 /* SettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E262B9D2579E90300F7F1A6 /* SettingTableViewController.swift */; };
 		8ECC872425761539006BC2B2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECC872325761539006BC2B2 /* AppDelegate.swift */; };
 		8ECC872625761539006BC2B2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECC872525761539006BC2B2 /* SceneDelegate.swift */; };
@@ -76,6 +79,12 @@
 		805F569EBE4FE2F718B41421 /* Pods-iRandomPhotoWidget.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iRandomPhotoWidget.release.xcconfig"; path = "Target Support Files/Pods-iRandomPhotoWidget/Pods-iRandomPhotoWidget.release.xcconfig"; sourceTree = "<group>"; };
 		89DE029B7D44FED05CFA4665 /* Pods-iRandomPhotoWidget-iRandomPhotoWidgetUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iRandomPhotoWidget-iRandomPhotoWidgetUITests.release.xcconfig"; path = "Target Support Files/Pods-iRandomPhotoWidget-iRandomPhotoWidgetUITests/Pods-iRandomPhotoWidget-iRandomPhotoWidgetUITests.release.xcconfig"; sourceTree = "<group>"; };
 		8B623070A9587519F98FE124 /* Pods-iRandomPhotoWidgetTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iRandomPhotoWidgetTests.release.xcconfig"; path = "Target Support Files/Pods-iRandomPhotoWidgetTests/Pods-iRandomPhotoWidgetTests.release.xcconfig"; sourceTree = "<group>"; };
+		8E240EBA257E03A00046B92F /* Localizable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localizable.swift; sourceTree = "<group>"; };
+		8E240ECB257E04070046B92F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		8E240EE1257E04B60046B92F /* BundleExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BundleExtension.swift; sourceTree = "<group>"; };
+		8E240EE7257E053C0046B92F /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		8E240EEC257E05440046B92F /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		8E240EED257E05490046B92F /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		8E262B9D2579E90300F7F1A6 /* SettingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewController.swift; sourceTree = "<group>"; };
 		8E5786BCF78C03D64C712BF7 /* Pods_iRandomPhotoWidgetTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iRandomPhotoWidgetTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8ECC872025761539006BC2B2 /* iRandomPhotoWidget.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iRandomPhotoWidget.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -142,6 +151,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8E240EB9257E03870046B92F /* Localizable */ = {
+			isa = PBXGroup;
+			children = (
+				8E240EBA257E03A00046B92F /* Localizable.swift */,
+				8E240ECC257E04070046B92F /* Localizable.strings */,
+				8E240EE1257E04B60046B92F /* BundleExtension.swift */,
+			);
+			path = Localizable;
+			sourceTree = "<group>";
+		};
 		8ECC871725761539006BC2B2 = {
 			isa = PBXGroup;
 			children = (
@@ -170,6 +189,7 @@
 		8ECC872225761539006BC2B2 /* iRandomPhotoWidget */ = {
 			isa = PBXGroup;
 			children = (
+				8E240EB9257E03870046B92F /* Localizable */,
 				8ECC87772576163A006BC2B2 /* iRandomPhotoWidget.entitlements */,
 				8ECC872325761539006BC2B2 /* AppDelegate.swift */,
 				8ECC872525761539006BC2B2 /* SceneDelegate.swift */,
@@ -360,6 +380,9 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hant",
+				"zh-Hans",
+				"zh-HK",
 			);
 			mainGroup = 8ECC871725761539006BC2B2;
 			productRefGroup = 8ECC872125761539006BC2B2 /* Products */;
@@ -380,6 +403,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8ECC872D2576153A006BC2B2 /* Preview Assets.xcassets in Resources */,
+				8E240ECA257E04070046B92F /* Localizable.strings in Resources */,
 				8ECC872A2576153A006BC2B2 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -541,7 +565,9 @@
 				8E262B9E2579E90300F7F1A6 /* SettingTableViewController.swift in Sources */,
 				8ECC872425761539006BC2B2 /* AppDelegate.swift in Sources */,
 				8ECC876B257615F2006BC2B2 /* iRandomPhotoTimeBanner.intentdefinition in Sources */,
+				8E240EE2257E04B60046B92F /* BundleExtension.swift in Sources */,
 				8ECC872625761539006BC2B2 /* SceneDelegate.swift in Sources */,
+				8E240EBB257E03A00046B92F /* Localizable.swift in Sources */,
 				8ECC872825761539006BC2B2 /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -591,12 +617,27 @@
 		};
 /* End PBXTargetDependency section */
 
+/* Begin PBXVariantGroup section */
+		8E240ECC257E04070046B92F /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8E240ECB257E04070046B92F /* en */,
+				8E240EE7257E053C0046B92F /* zh-Hant */,
+				8E240EEC257E05440046B92F /* zh-Hans */,
+				8E240EED257E05490046B92F /* zh-HK */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
 		8ECC87482576153A006BC2B2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -659,6 +700,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -719,6 +761,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = iRandomPhotoWidget/iRandomPhotoWidget.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"iRandomPhotoWidget/Preview Content\"";
 				DEVELOPMENT_TEAM = 25889SGWKU;
@@ -730,6 +773,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.dicky.iRandomPhotoWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -743,6 +787,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = iRandomPhotoWidget/iRandomPhotoWidget.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"iRandomPhotoWidget/Preview Content\"";
 				DEVELOPMENT_TEAM = 25889SGWKU;
@@ -754,6 +799,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.dicky.iRandomPhotoWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -855,6 +901,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = iRandomPhotoTimeBannerExtension.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 25889SGWKU;
 				INFOPLIST_FILE = iRandomPhotoTimeBanner/Info.plist;
@@ -865,6 +912,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.dicky.iRandomPhotoWidget.iRandomPhotoTimeBanner;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -879,6 +927,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = iRandomPhotoTimeBannerExtension.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 25889SGWKU;
 				INFOPLIST_FILE = iRandomPhotoTimeBanner/Info.plist;
@@ -889,6 +938,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.dicky.iRandomPhotoWidget.iRandomPhotoTimeBanner;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

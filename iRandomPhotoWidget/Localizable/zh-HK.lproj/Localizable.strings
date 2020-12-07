@@ -1,0 +1,17 @@
+/* 
+  Localizable.strings
+  iRandomPhotoWidget
+
+  Created by Dicky on 7/12/2020.
+  
+*/
+
+"selectPhoto" = "簡相";
+"totalPhotos" = "總共圖片";
+"swipeToStart" = "按住向右拉";
+"setting" = "設定";
+"language" = "語言";
+"english" = "English";
+"tranchin" = "繁體中文";
+"simchin" = "简体中文";
+"hkchin" = "廣東話";

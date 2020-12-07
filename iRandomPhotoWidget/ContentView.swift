@@ -30,12 +30,13 @@ class BatteryModel : ObservableObject {
 
 struct ContentView: View {
     
-    @Environment(\.colorScheme) var colorScheme
-    @ObservedObject var batteryModel = BatteryModel()
+    @Environment(\.colorScheme) private var colorScheme
+    @ObservedObject private var batteryModel = BatteryModel()
     @State var goToHome = false
-    @State var animate = false
-    @State var endSplash = false
-    @State var imageList : [UIImage] = []
+    @State var animateAction = true
+    @State private var animate = false
+    @State private var endSplash = false
+    @State private var imageList : [UIImage] = []
     let key = "randomImage"
     
     var body: some View {
@@ -80,7 +81,11 @@ struct ContentView: View {
             }
             .ignoresSafeArea(.all,edges: .all)
             .onAppear(perform: {
-                animationSpalsh()
+                if (animateAction) {
+                    animationSpalsh()
+                } else {
+                    endSplash = true
+                }
                 imageList = loadImage()
                 if (imageList.count == 0) {
                     self.goToHome = true
@@ -153,8 +158,10 @@ struct OnCircularView: View  {
     var body: some View {
         
         ZStack(){
-            
-        }.fullScreenCover(isPresented: $setting, content: SettingTableView.init)
+        }.fullScreenCover(isPresented: $setting, content: {
+            SettingTableView().ignoresSafeArea()
+        })
+
         
         VStack(spacing: 20){
             Spacer()
@@ -217,7 +224,7 @@ struct OnCircularView: View  {
                     .overlay(
                         VStack(spacing: 10) {
                             Text("\(Int(round(batteryModel.level * 100)))%")
-                            Text("Total Images: \(images.count)")
+                            Text(localizedString(forKey: "totalPhotos")+": \(images.count)")
                             Button(action: {
                                 self.setting.toggle()
                             }) {
@@ -249,7 +256,7 @@ struct OnCircularView: View  {
                 HStack {
                     Image(systemName: "photo.on.rectangle")
                         .font(.title)
-                    Text("Select Photo")
+                    Text(localizedString(forKey: "selectPhoto"))
                         .fontWeight(.semibold)
                         .font(.title)
                 }
@@ -306,7 +313,7 @@ struct OnBoardScreen: View {
                     Capsule()
                         .fill(Color.white.opacity(0.1))
                     
-                    Text("SWIPE TO START")
+                    Text(localizedString(forKey: "swipeToStart"))
                         .fontWeight(.semibold)
                         .foregroundColor(.white)
                         .padding(.leading,30)
