@@ -42,9 +42,19 @@ struct Provider: IntentTimelineProvider {
     
     func getTimeline(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
         UIDevice.current.isBatteryMonitoringEnabled = true
+        var photoShadow = true
+        if (UserDefaults(suiteName: "group.dicky.iRandomPhotoWidget")!.string(forKey: "photoShadow") == nil) {
+        } else {
+            // userDefault has a value
+            if (UserDefaults(suiteName: "group.dicky.iRandomPhotoWidget")!.string(forKey: "photoShadow") == "YES") {
+            } else {
+                photoShadow = false
+            }
+        }
+        
         let midnight = Calendar.current.startOfDay(for: Date())
         let nextMidnight = Calendar.current.date(byAdding: .minute, value: 5, to: midnight)!
-        let entries = [SimpleEntry(date: midnight,batteryNumber: String(format:"%.f%%", UIDevice.current.batteryLevel * 100),  batteryState: UIDevice.current.batteryState, configuration: configuration)]
+        let entries = [SimpleEntry(date: midnight,batteryNumber: String(format:"%.f%%", UIDevice.current.batteryLevel * 100),  batteryState: UIDevice.current.batteryState, configuration: configuration, shadow: photoShadow)]
         let timeline = Timeline(entries: entries, policy: .after(nextMidnight))
         completion(timeline)
     }
@@ -55,6 +65,7 @@ struct SimpleEntry: TimelineEntry {
     var batteryNumber : String
     var batteryState : UIDevice.BatteryState
     let configuration: ConfigurationIntent
+    var shadow : Bool = true
 }
 
 struct widgetEntryView : View {
@@ -110,16 +121,17 @@ struct widgetEntryView : View {
                 .frame(minWidth: 0, maxWidth: .infinity)
                 .frame(minHeight: 0, maxHeight: .infinity)
 
-            VStack {
-                Spacer()
-                LinearGradient(gradient: gradient,
-                               startPoint: .top,
-                               endPoint: .bottom)
-                    .frame(height: 80)
+            if (entry.shadow) {
+                VStack {
+                    Spacer()
+                    LinearGradient(gradient: gradient,
+                                   startPoint: .top,
+                                   endPoint: .bottom)
+                        .frame(height: 80)
+                }
             }
             
            
-            
             VStack(alignment: .leading) {
                 Spacer()
                 HStack(alignment: .bottom) {
@@ -168,7 +180,7 @@ struct PlaceHolder : View {
         }
         .background(Color.black)
     }
-    
+
 }
 
 @main

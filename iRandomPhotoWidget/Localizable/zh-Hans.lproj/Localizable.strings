@@ -11,7 +11,10 @@
 "swipeToStart" = "向右滑动";
 "setting" = "設定";
 "language" = "語言";
-"english" = "English";
-"tranchin" = "繁體中文";
-"simchin" = "简体中文";
-"hkchin" = "廣東話";
+"photoplay" = "圖片次序";
+"photoInorder" = "順序";
+"photoRandom" = "隨機";
+"photoShadow" = "圖片陰影";
+"yes" = "有";
+"no" = "沒有";
+

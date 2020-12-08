@@ -6,13 +6,23 @@
 //
 import SwiftUI
 import UIKit
+import WidgetKit
 
 class SettingTableViewController: UIViewController,UITableViewDelegate, UITableViewDataSource {
     
+    var photoShadow:Bool = false
+    
     var info = [
-            ["林書豪","陳信安"],
+            [localizedString(forKey: "yes"),localizedString(forKey: "no")],
+            [localizedString(forKey: "photoInorder"),localizedString(forKey: "photoRandom")],
             [Language.allCases]
         ]
+    
+    var titleArray = [
+        localizedString(forKey: "photoShadow"),
+        localizedString(forKey: "photoplay"),
+        localizedString(forKey: "language")
+    ]
     
     lazy var closeButton: UIButton = {
         let button = UIButton()
@@ -48,6 +58,18 @@ class SettingTableViewController: UIViewController,UITableViewDelegate, UITableV
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if (UserDefaults(suiteName: "group.dicky.iRandomPhotoWidget")!.string(forKey: "photoShadow") == nil) {
+            self.photoShadow = true
+        } else {
+            // userDefault has a value
+            if (UserDefaults(suiteName: "group.dicky.iRandomPhotoWidget")!.string(forKey: "photoShadow") == "YES") {
+                self.photoShadow = true
+            } else {
+                self.photoShadow = false
+            }
+        }
+        
         self.view.backgroundColor = .systemGroupedBackground
         tableView.register(
           UITableViewCell.self, forCellReuseIdentifier: "Cell")
@@ -70,7 +92,7 @@ class SettingTableViewController: UIViewController,UITableViewDelegate, UITableV
     
     func tableView(_ tableView: UITableView,
       numberOfRowsInSection section: Int) -> Int {
-        if section == 1 {
+        if section == 2 {
             return Language.allCases.count
         } else {
             return info[section].count
@@ -84,8 +106,29 @@ class SettingTableViewController: UIViewController,UITableViewDelegate, UITableV
                 withIdentifier: "Cell", for: indexPath as IndexPath) as
             UITableViewCell
 
-        if indexPath.section == 1 {
-            cell.selectionStyle = .none
+        cell.selectionStyle = .none
+        
+        if indexPath.section == 0 {
+            
+            if let myLabel = cell.textLabel {
+                myLabel.text =
+                    "\(info[indexPath.section][indexPath.row])"
+            }
+            
+            cell.accessoryType = .none
+            
+            if self.photoShadow {
+                if indexPath.row == 0 {
+                    cell.accessoryType = .checkmark
+                }
+            } else {
+                if indexPath.row == 1 {
+                    cell.accessoryType = .checkmark
+                }
+            }
+            
+        } else if indexPath.section == 2 {
+
             
             cell.textLabel?.text = Language.allCases[indexPath.row].name
             
@@ -110,25 +153,36 @@ class SettingTableViewController: UIViewController,UITableViewDelegate, UITableV
     
     func tableView(_ tableView: UITableView,
       titleForHeaderInSection section: Int) -> String? {
-        let title = section == 0 ? "籃球" : localizedString(forKey: "language")
-        return title
+        return self.titleArray[section]
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(
             at: indexPath, animated: true)
 
-        if let cell = tableView.cellForRow(at: indexPath) {
-            cell.accessoryType = .checkmark
+        if indexPath.section == 0 {
+            if indexPath.row == 0{
+                UserDefaults(suiteName: "group.dicky.iRandomPhotoWidget")!.set("YES", forKey: "photoShadow")
+                self.photoShadow = true
+            } else {
+                UserDefaults(suiteName: "group.dicky.iRandomPhotoWidget")!.set("NO", forKey: "photoShadow")
+                self.photoShadow = false
+            }
+            WidgetCenter.shared.reloadAllTimelines()
+            tableView.reloadData()
+        } else if indexPath.section == 2 {
+            if let cell = tableView.cellForRow(at: indexPath) {
+                cell.accessoryType = .checkmark
+            }
+            
+            let languageCode = Language.allCases[indexPath.row].rawValue
+            setLanguage(languageCode)
+            
+            // Create the SwiftUI view that provides the window contents.
+            let contentView = ContentView(goToHome: true, animateAction: false)
+            guard let window = UIApplication.shared.keyWindow else { return }
+            window.rootViewController = UIHostingController(rootView: contentView)
         }
-        
-        let languageCode = Language.allCases[indexPath.row].rawValue
-        setLanguage(languageCode)
-        
-        // Create the SwiftUI view that provides the window contents.
-        let contentView = ContentView(goToHome: true,animateAction: false)
-        guard let window = UIApplication.shared.keyWindow else { return }
-        window.rootViewController = UIHostingController(rootView: contentView)
     }
     
     func setLanguage(_ languageCode: String) {

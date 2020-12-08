@@ -90,6 +90,7 @@ struct ContentView: View {
                 if (imageList.count == 0) {
                     self.goToHome = true
                 }
+                
             })
             .opacity(endSplash ? 0 : 1)
         }
