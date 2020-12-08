@@ -178,10 +178,13 @@ class SettingTableViewController: UIViewController,UITableViewDelegate, UITableV
             let languageCode = Language.allCases[indexPath.row].rawValue
             setLanguage(languageCode)
             
-            // Create the SwiftUI view that provides the window contents.
-            let contentView = ContentView(goToHome: true, animateAction: false)
-            guard let window = UIApplication.shared.keyWindow else { return }
-            window.rootViewController = UIHostingController(rootView: contentView)
+            self.dismiss(animated: true) {
+                // Create the SwiftUI view that provides the window contents.
+                let contentView = ContentView(goToHome: true, animateAction: false)
+                guard let window = UIApplication.shared.keyWindow else { return }
+                window.rootViewController = UIHostingController(rootView: contentView)
+            }
+           
         }
     }
     
