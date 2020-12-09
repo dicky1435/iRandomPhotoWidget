@@ -11,17 +11,22 @@ import WidgetKit
 class SettingTableViewController: UIViewController,UITableViewDelegate, UITableViewDataSource {
     
     var photoShadow:Bool = false
+    var photoTimeNBattery:Bool = false
     
     var info = [
             [localizedString(forKey: "yes"),localizedString(forKey: "no")],
-            [localizedString(forKey: "photoInorder"),localizedString(forKey: "photoRandom")],
-            [Language.allCases]
+            //[localizedString(forKey: "photoInorder"),localizedString(forKey: "photoRandom")],
+            [localizedString(forKey: "yes"),localizedString(forKey: "no")],
+            [Language.allCases],
+            [localizedString(forKey: "unlimitedCode")]
         ]
     
     var titleArray = [
         localizedString(forKey: "photoShadow"),
-        localizedString(forKey: "photoplay"),
-        localizedString(forKey: "language")
+        //localizedString(forKey: "photoplay"),
+        localizedString(forKey: "photoTimeNBattery"),
+        localizedString(forKey: "language"),
+        localizedString(forKey: "unlockFunction")
     ]
     
     lazy var closeButton: UIButton = {
@@ -59,14 +64,25 @@ class SettingTableViewController: UIViewController,UITableViewDelegate, UITableV
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if (UserDefaults(suiteName: "group.dicky.iRandomPhotoWidget")!.string(forKey: "photoShadow") == nil) {
+        if (UserDefaults(suiteName: "group.dicky.iRandomPhotoWidget")!.string(forKey: "settingPhotoShadow") == nil) {
             self.photoShadow = true
         } else {
             // userDefault has a value
-            if (UserDefaults(suiteName: "group.dicky.iRandomPhotoWidget")!.string(forKey: "photoShadow") == "YES") {
+            if (UserDefaults(suiteName: "group.dicky.iRandomPhotoWidget")!.string(forKey: "settingPhotoShadow") == "YES") {
                 self.photoShadow = true
             } else {
                 self.photoShadow = false
+            }
+        }
+        
+        if (UserDefaults(suiteName: "group.dicky.iRandomPhotoWidget")!.string(forKey: "settingPhotoTimeNBattery") == nil) {
+            self.photoTimeNBattery = true
+        } else {
+            // userDefault has a value
+            if (UserDefaults(suiteName: "group.dicky.iRandomPhotoWidget")!.string(forKey: "settingPhotoTimeNBattery") == "YES") {
+                self.photoTimeNBattery = true
+            } else {
+                self.photoTimeNBattery = false
             }
         }
         
@@ -115,9 +131,28 @@ class SettingTableViewController: UIViewController,UITableViewDelegate, UITableV
                     "\(info[indexPath.section][indexPath.row])"
             }
             
-            cell.accessoryType = .none
+            cell.accessoryType = .none //accessory not selection
             
             if self.photoShadow {
+                if indexPath.row == 0 {
+                    cell.accessoryType = .checkmark
+                }
+            } else {
+                if indexPath.row == 1 {
+                    cell.accessoryType = .checkmark
+                }
+            }
+            
+        } else if indexPath.section == 1 {
+            
+            if let myLabel = cell.textLabel {
+                myLabel.text =
+                    "\(info[indexPath.section][indexPath.row])"
+            }
+            
+            cell.accessoryType = .none //accessory not selection
+            
+            if self.photoTimeNBattery {
                 if indexPath.row == 0 {
                     cell.accessoryType = .checkmark
                 }
@@ -161,12 +196,22 @@ class SettingTableViewController: UIViewController,UITableViewDelegate, UITableV
             at: indexPath, animated: true)
 
         if indexPath.section == 0 {
-            if indexPath.row == 0{
-                UserDefaults(suiteName: "group.dicky.iRandomPhotoWidget")!.set("YES", forKey: "photoShadow")
+            if indexPath.row == 0 {
+                UserDefaults(suiteName: "group.dicky.iRandomPhotoWidget")!.set("YES", forKey: "settingPhotoShadow")
                 self.photoShadow = true
             } else {
-                UserDefaults(suiteName: "group.dicky.iRandomPhotoWidget")!.set("NO", forKey: "photoShadow")
+                UserDefaults(suiteName: "group.dicky.iRandomPhotoWidget")!.set("NO", forKey: "settingPhotoShadow")
                 self.photoShadow = false
+            }
+            WidgetCenter.shared.reloadAllTimelines()
+            tableView.reloadData()
+        } else if indexPath.section == 1 {
+            if indexPath.row == 0 {
+                UserDefaults(suiteName: "group.dicky.iRandomPhotoWidget")!.set("YES", forKey: "settingPhotoTimeNBattery")
+                self.photoTimeNBattery = true
+            } else {
+                UserDefaults(suiteName: "group.dicky.iRandomPhotoWidget")!.set("NO", forKey: "settingPhotoTimeNBattery")
+                self.photoTimeNBattery = false
             }
             WidgetCenter.shared.reloadAllTimelines()
             tableView.reloadData()
@@ -183,6 +228,54 @@ class SettingTableViewController: UIViewController,UITableViewDelegate, UITableV
                 let contentView = ContentView(goToHome: true, animateAction: false)
                 guard let window = UIApplication.shared.keyWindow else { return }
                 window.rootViewController = UIHostingController(rootView: contentView)
+            }
+           
+        } else if indexPath.section == 3 {
+            unlockCode()
+        }
+    }
+    
+    func unlockCode() {
+        if (UserDefaults(suiteName: "group.dicky.iRandomPhotoWidget")!.string(forKey: "purchaseUnlock") == nil) {
+            let dialogMessage = UIAlertController(title: localizedString(forKey: "unlockFunction"), message: localizedString(forKey: "unlockAsking"), preferredStyle: .alert)
+            
+            dialogMessage.addTextField(configurationHandler: { textField in
+                textField.placeholder = localizedString(forKey: "unlockPlaceHolder")
+            })
+            
+            let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
+                if (dialogMessage.textFields?.first?.text?.uppercased() == GlobalConstants.unlockCode) {
+                    UserDefaults(suiteName: "group.dicky.iRandomPhotoWidget")!.set(GlobalConstants.unlockCode, forKey: "purchaseUnlock")
+                    
+                    self.dismiss(animated: true, completion: nil)
+                } else {
+                    let dialogMessage = UIAlertController(title: localizedString(forKey: "unlockFunction"), message: localizedString(forKey: "unlockWrongCode"), preferredStyle: .alert)
+                    let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
+                    })
+                    dialogMessage.addAction(ok)
+                    self.present(dialogMessage, animated: true, completion: nil)
+                }
+            })
+            
+            let cancel = UIAlertAction(title: localizedString(forKey: "cancel"), style: .cancel) { (action) -> Void in
+            }
+            
+            //Add OK and Cancel button to dialog message
+            dialogMessage.addAction(ok)
+            dialogMessage.addAction(cancel)
+            
+            // Present dialog message to user
+            self.present(dialogMessage, animated: true, completion: nil)
+        } else {
+            if (UserDefaults(suiteName: "group.dicky.iRandomPhotoWidget")!.string(forKey: "purchaseUnlock") == GlobalConstants.unlockCode) {
+                let dialogMessage = UIAlertController(title: localizedString(forKey: "unlockFunction"), message: localizedString(forKey: "unlockAlready"), preferredStyle: .alert)
+                let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
+                })
+                dialogMessage.addAction(ok)
+                self.present(dialogMessage, animated: true, completion: nil)
+            } else {
+                UserDefaults(suiteName: "group.dicky.iRandomPhotoWidget")!.removeObject(forKey: "purchaseUnlock")
+                unlockCode()
             }
            
         }

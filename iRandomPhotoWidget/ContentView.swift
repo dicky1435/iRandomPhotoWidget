@@ -397,7 +397,13 @@ struct ImagePicker : UIViewControllerRepresentable {
     func makeUIViewController(context: Context) -> PHPickerViewController {
         var config = PHPickerConfiguration()
         config.filter = .images
-        config.selectionLimit = 100
+        config.selectionLimit = 10
+        if (UserDefaults(suiteName: "group.dicky.iRandomPhotoWidget")!.string(forKey: "purchaseUnlock") != nil) {
+            // userDefault has a value
+            if (UserDefaults(suiteName: "group.dicky.iRandomPhotoWidget")!.string(forKey: "purchaseUnlock") == GlobalConstants.unlockCode) {
+                config.selectionLimit = 100
+            }
+        }
         let picker = PHPickerViewController(configuration: config)
         picker.delegate = context.coordinator
         return picker
@@ -502,7 +508,7 @@ struct ImagePicker : UIViewControllerRepresentable {
                                     if (self.parent.images.count == results.count) {
                                         print("results:\(self.parent.images.count)")
                                         if self.saveImages(self.parent.images) {
-                                            ProgressHUD.showSucceed("Photos Saved!")
+                                            ProgressHUD.showSucceed(localizedString(forKey: "photoSaved"))
                                             self.parent.alertBox = true
                                             WidgetCenter.shared.reloadAllTimelines()
                                         }
@@ -515,8 +521,6 @@ struct ImagePicker : UIViewControllerRepresentable {
                         }
                     }
                 }
-                
-     
             }
         }
     }

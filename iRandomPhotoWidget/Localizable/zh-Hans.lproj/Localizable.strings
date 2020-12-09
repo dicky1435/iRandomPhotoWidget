@@ -17,4 +17,13 @@
 "photoShadow" = "圖片陰影";
 "yes" = "有";
 "no" = "沒有";
+"photoSaved" = "圖片已儲存";
+"photoTimeNBattery" = "時間及電量";
+"unlockFunction" = "解鎖功能";
+"unlimitedCode" = "輸入代碼";
+"unlockAsking" = "請輸入代碼，以解鎖功能!";
+"unlockPlaceHolder" = "輸入代碼";
+"unlockWrongCode" = "錯誤代碼! 請重試!";
+"cancel" = "取消";
+"unlockAlready" = "你已經解鎖全部功能!";
 

@@ -17,3 +17,12 @@
 "photoShadow" = "Photo Shadow";
 "yes" = "Yes";
 "no" = "No";
+"photoSaved" = "Photo Saved!";
+"photoTimeNBattery" = "Time And Battery";
+"unlockFunction" = "Unlock Function";
+"unlimitedCode" = "Enter Code";
+"unlockAsking" = "Please enter the PIN code for function unlock!";
+"unlockPlaceHolder" = "Type the PIN code";
+"unlockWrongCode" = "Wrong Code! Please try again!";
+"cancel" = "Cancel";
+"unlockAlready" = "You have unlocked all functions";

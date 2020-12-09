@@ -43,18 +43,33 @@ struct Provider: IntentTimelineProvider {
     func getTimeline(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
         UIDevice.current.isBatteryMonitoringEnabled = true
         var photoShadow = true
-        if (UserDefaults(suiteName: "group.dicky.iRandomPhotoWidget")!.string(forKey: "photoShadow") == nil) {
+        var photoTimeNBattery = true
+        
+        if (UserDefaults(suiteName: "group.dicky.iRandomPhotoWidget")!.string(forKey: "settingPhotoShadow") == nil) {
+            photoShadow = true
         } else {
             // userDefault has a value
-            if (UserDefaults(suiteName: "group.dicky.iRandomPhotoWidget")!.string(forKey: "photoShadow") == "YES") {
+            if (UserDefaults(suiteName: "group.dicky.iRandomPhotoWidget")!.string(forKey: "settingPhotoShadow") == "YES") {
+                photoShadow = true
             } else {
                 photoShadow = false
             }
         }
         
+        if (UserDefaults(suiteName: "group.dicky.iRandomPhotoWidget")!.string(forKey: "settingPhotoTimeNBattery") == nil) {
+            photoTimeNBattery = true
+        } else {
+            // userDefault has a value
+            if (UserDefaults(suiteName: "group.dicky.iRandomPhotoWidget")!.string(forKey: "settingPhotoTimeNBattery") == "YES") {
+                photoTimeNBattery = true
+            } else {
+                photoTimeNBattery = false
+            }
+        }
+        
         let midnight = Calendar.current.startOfDay(for: Date())
         let nextMidnight = Calendar.current.date(byAdding: .minute, value: 5, to: midnight)!
-        let entries = [SimpleEntry(date: midnight,batteryNumber: String(format:"%.f%%", UIDevice.current.batteryLevel * 100),  batteryState: UIDevice.current.batteryState, configuration: configuration, shadow: photoShadow)]
+        let entries = [SimpleEntry(date: midnight,batteryNumber: String(format:"%.f%%", UIDevice.current.batteryLevel * 100),  batteryState: UIDevice.current.batteryState, configuration: configuration, shadow: photoShadow, timeNBattery: photoTimeNBattery)]
         let timeline = Timeline(entries: entries, policy: .after(nextMidnight))
         completion(timeline)
     }
@@ -66,6 +81,7 @@ struct SimpleEntry: TimelineEntry {
     var batteryState : UIDevice.BatteryState
     let configuration: ConfigurationIntent
     var shadow : Bool = true
+    var timeNBattery : Bool = true
 }
 
 struct widgetEntryView : View {
@@ -131,21 +147,22 @@ struct widgetEntryView : View {
                 }
             }
             
-           
-            VStack(alignment: .leading) {
-                Spacer()
-                HStack(alignment: .bottom) {
-                    Text(entry.date,style: .timer)
-                        .padding(.all, family == .systemSmall ? 7 : (family == .systemMedium ? 10 : 15))
-                        .font(.headline)
-                        .foregroundColor(.white)
+            if (entry.timeNBattery) {
+                VStack(alignment: .leading) {
+                    Spacer()
+                    HStack(alignment: .bottom) {
+                        Text(entry.date,style: .timer)
+                            .padding(.all, family == .systemSmall ? 7 : (family == .systemMedium ? 10 : 15))
+                            .font(.headline)
+                            .foregroundColor(.white)
+                        
+                        Text(entry.batteryNumber)
+                            .padding(.all, family == .systemSmall ? 7 : (family == .systemMedium ? 10 : 15))
+                            .font(.headline)
+                            .foregroundColor(.white)
+                    }
                     
-                    Text(entry.batteryNumber)
-                        .padding(.all, family == .systemSmall ? 7 : (family == .systemMedium ? 10 : 15))
-                        .font(.headline)
-                        .foregroundColor(.white)
                 }
-                
             }
             
         }
