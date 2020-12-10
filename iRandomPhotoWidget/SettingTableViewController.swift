@@ -102,6 +102,7 @@ class SettingTableViewController: UIViewController,UITableViewDelegate, UITableV
 
         tableView.allowsMultipleSelection = false
 
+        setFooterView()
         setupLayer()
         setView()
     }
@@ -307,6 +308,19 @@ class SettingTableViewController: UIViewController,UITableViewDelegate, UITableV
         tableView.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: 0).isActive = true
         tableView.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 0).isActive = true
         tableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: 0).isActive = true
+    }
+    
+    func setFooterView() {
+        let basicView = UIView()
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textColor = .lightGray
+        label.text = "v1.0.0"
+        label.numberOfLines = 1
+        label.font = .boldSystemFont(ofSize: 15)
+        basicView.addSubview(label)
+        label.centerXAnchor.constraint(equalTo: basicView.centerXAnchor).isActive = true
+        tableView.tableFooterView = basicView
     }
     
     @objc func closeAction() {

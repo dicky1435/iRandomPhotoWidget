@@ -264,7 +264,7 @@ struct OnCircularView: View  {
                 .frame(minWidth: 0, maxWidth: .infinity, minHeight: 20, maxHeight: 25)
                 .padding()
                 .foregroundColor(.white)
-                .background(LinearGradient(gradient: Gradient(colors: [Color.red, Color.blue]), startPoint: .leading, endPoint: .trailing))
+                .background(LinearGradient(gradient: Gradient(colors: [Color.green, Color.blue]), startPoint: .leading, endPoint: .trailing))
                 .cornerRadius(40)
                 .padding(.horizontal, 20)
             }
@@ -457,7 +457,7 @@ struct ImagePicker : UIViewControllerRepresentable {
         func saveImage(_ imageName:String, _ image:UIImage) {
             if let shareUrl = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.dicky.iRandomPhotoWidget") {
                let imagePath = shareUrl.appendingPathComponent(imageName)
-                try? image.pngData()?.write(to: imagePath)
+                try? image.jpegData(compressionQuality: 0.9)?.write(to: imagePath)
             }
         }
         
