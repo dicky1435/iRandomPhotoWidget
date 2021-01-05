@@ -81,6 +81,8 @@ struct ContentView: View {
             }
             .ignoresSafeArea(.all,edges: .all)
             .onAppear(perform: {
+                UserDefaults(suiteName: "group.dicky.iRandomPhotoWidget")!.set(10, forKey: "photoLimitation")
+                
                 if (animateAction) {
                     animationSpalsh()
                 } else {
@@ -397,7 +399,7 @@ struct ImagePicker : UIViewControllerRepresentable {
     func makeUIViewController(context: Context) -> PHPickerViewController {
         var config = PHPickerConfiguration()
         config.filter = .images
-        config.selectionLimit = 10
+        config.selectionLimit = UserDefaults(suiteName: "group.dicky.iRandomPhotoWidget")!.integer(forKey: "photoLimitation")
         if (UserDefaults(suiteName: "group.dicky.iRandomPhotoWidget")!.string(forKey: "purchaseUnlock") != nil) {
             // userDefault has a value
             if (UserDefaults(suiteName: "group.dicky.iRandomPhotoWidget")!.string(forKey: "purchaseUnlock") == GlobalConstants.unlockCode) {

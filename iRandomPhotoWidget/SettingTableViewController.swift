@@ -232,7 +232,22 @@ class SettingTableViewController: UIViewController,UITableViewDelegate, UITableV
             }
            
         } else if indexPath.section == 3 {
-            unlockCode()
+//            if indexPath.row == 0 {
+//                photoIncreaseByAds()
+//            } else {
+                unlockCode()
+//            }
+        }
+    }
+    
+    func photoIncreaseByAds() {
+        var limitNumber = UserDefaults(suiteName: "group.dicky.iRandomPhotoWidget")!.integer(forKey: "photoLimitation")
+        if (limitNumber >= 100) {
+            self.dismiss(animated: true, completion: nil)
+        } else {
+            limitNumber = limitNumber + 5
+            UserDefaults(suiteName: "group.dicky.iRandomPhotoWidget")!.set(limitNumber, forKey: "photoLimitation")
+            self.dismiss(animated: true, completion: nil)
         }
     }
     
