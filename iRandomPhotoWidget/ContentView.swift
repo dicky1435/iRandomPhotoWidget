@@ -403,7 +403,7 @@ struct ImagePicker : UIViewControllerRepresentable {
         if (UserDefaults(suiteName: "group.dicky.iRandomPhotoWidget")!.string(forKey: "purchaseUnlock") != nil) {
             // userDefault has a value
             if (UserDefaults(suiteName: "group.dicky.iRandomPhotoWidget")!.string(forKey: "purchaseUnlock") == GlobalConstants.unlockCode) {
-                config.selectionLimit = 100
+                config.selectionLimit = 200
             }
         }
         let picker = PHPickerViewController(configuration: config)
@@ -470,7 +470,7 @@ struct ImagePicker : UIViewControllerRepresentable {
                 let imageName = getImageKey(index)
                 if let shareUrl = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.dicky.iRandomPhotoWidget") {
                    let imagePath = shareUrl.appendingPathComponent(imageName)
-                    if let image = UIImage(contentsOfFile: imagePath.path) {
+                    if UIImage(contentsOfFile: imagePath.path) != nil {
                         do {
                               if FileManager.default.fileExists(atPath: imagePath.path) {
                                   try FileManager.default.removeItem(atPath: imagePath.path)
@@ -502,19 +502,18 @@ struct ImagePicker : UIViewControllerRepresentable {
                     for img in results {
                         if img.itemProvider.canLoadObject(ofClass: UIImage.self) {
                             img.itemProvider.loadObject(ofClass: UIImage.self) { (image,err) in
-                                DispatchQueue.main.async {
-                                    guard image != nil else {
-                                        return
-                                    }
-                                    self.parent.images.append(image as! UIImage)
-                                    if (self.parent.images.count == results.count) {
-                                        print("results:\(self.parent.images.count)")
-                                        if self.saveImages(self.parent.images) {
+                                guard image != nil else {
+                                    return
+                                }
+                                self.parent.images.append(image as! UIImage)
+                                if (self.parent.images.count == results.count) {
+                                    print("results:\(self.parent.images.count)")
+                                    if self.saveImages(self.parent.images) {
+                                        DispatchQueue.main.async {
                                             ProgressHUD.showSucceed(localizedString(forKey: "photoSaved"))
                                             self.parent.alertBox = true
                                             WidgetCenter.shared.reloadAllTimelines()
                                         }
-                                        
                                     }
                                 }
                             }

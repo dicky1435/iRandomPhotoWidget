@@ -227,8 +227,8 @@ class SettingTableViewController: UIViewController,UITableViewDelegate, UITableV
             self.dismiss(animated: true) {
                 // Create the SwiftUI view that provides the window contents.
                 let contentView = ContentView(goToHome: true, animateAction: false)
-                guard let window = UIApplication.shared.keyWindow else { return }
-                window.rootViewController = UIHostingController(rootView: contentView)
+                let window = UIApplication.shared.windows.filter {$0.isKeyWindow}.first
+                window!.rootViewController = UIHostingController(rootView: contentView)
             }
            
         } else if indexPath.section == 3 {

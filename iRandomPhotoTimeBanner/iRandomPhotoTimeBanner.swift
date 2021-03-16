@@ -41,6 +41,33 @@ struct Provider: IntentTimelineProvider {
     }
     
     func getTimeline(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
+      
+        var randomTime = 5
+        
+        switch configuration.RandomTime {
+        case .one:
+            randomTime = 1
+            break
+        case .five:
+            randomTime = 5
+            break
+        case .ten:
+            randomTime = 10
+            break
+        case .third:
+            randomTime = 30
+            break
+        case .unknown:
+            break
+        }
+        
+        let configBgFilter = configuration.BackgroundFilter
+        if (configBgFilter == true) {
+            UserDefaults(suiteName: "group.dicky.iRandomPhotoWidget")!.set("YES", forKey: "settingPhotoShadow")
+        } else {
+            UserDefaults(suiteName: "group.dicky.iRandomPhotoWidget")!.set("NO", forKey: "settingPhotoShadow")
+        }
+        
         UIDevice.current.isBatteryMonitoringEnabled = true
         var photoShadow = true
         var photoTimeNBattery = true
@@ -68,7 +95,7 @@ struct Provider: IntentTimelineProvider {
         }
         
         let midnight = Calendar.current.startOfDay(for: Date())
-        let nextMidnight = Calendar.current.date(byAdding: .minute, value: 5, to: midnight)!
+        let nextMidnight = Calendar.current.date(byAdding: .minute, value: randomTime, to: midnight)!
         let entries = [SimpleEntry(date: midnight,batteryNumber: String(format:"%.f%%", UIDevice.current.batteryLevel * 100),  batteryState: UIDevice.current.batteryState, configuration: configuration, shadow: photoShadow, timeNBattery: photoTimeNBattery)]
         let timeline = Timeline(entries: entries, policy: .after(nextMidnight))
         completion(timeline)
