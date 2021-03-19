@@ -30,13 +30,13 @@ struct Provider: IntentTimelineProvider {
     //@ObservedObject var batteryModel = BatteryModel()
     
     func placeholder(in context: Context) -> SimpleEntry {
-        SimpleEntry(date: Date(),batteryNumber: "loading",batteryState: UIDevice.current.batteryState ,configuration: ConfigurationIntent())
+        SimpleEntry(date: Date(),batteryNumber: "loading",batteryState: UIDevice.current.batteryState ,configuration: ConfigurationIntent(), selectColor: UIColor.white)
     }
     
     func getSnapshot(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (SimpleEntry) -> ()) {
         UIDevice.current.isBatteryMonitoringEnabled = true
         let midnight = Calendar.current.startOfDay(for: Date())
-        let entries = SimpleEntry(date: midnight,batteryNumber: String(format:"%.f%%", UIDevice.current.batteryLevel * 100), batteryState: UIDevice.current.batteryState, configuration: configuration)
+        let entries = SimpleEntry(date: midnight,batteryNumber: String(format:"%.f%%", UIDevice.current.batteryLevel * 100), batteryState: UIDevice.current.batteryState, configuration: configuration, selectColor: UIColor.white)
         completion(entries)
     }
     
@@ -71,6 +71,7 @@ struct Provider: IntentTimelineProvider {
         UIDevice.current.isBatteryMonitoringEnabled = true
         var photoShadow = true
         var photoTimeNBattery = true
+        var selectColor = UIColor.white
         
         if (UserDefaults(suiteName: "group.dicky.iRandomPhotoWidget")!.string(forKey: "settingPhotoShadow") == nil) {
             photoShadow = true
@@ -94,9 +95,15 @@ struct Provider: IntentTimelineProvider {
             }
         }
         
+        if (UserDefaults(suiteName: "group.dicky.iRandomPhotoWidget")!.color(forKey: "textColor") == nil) {
+            selectColor = UIColor.white
+        } else {
+            selectColor = UserDefaults(suiteName: "group.dicky.iRandomPhotoWidget")!.color(forKey: "textColor") ?? UIColor.white
+        }
+        
         let midnight = Calendar.current.startOfDay(for: Date())
         let nextMidnight = Calendar.current.date(byAdding: .minute, value: randomTime, to: midnight)!
-        let entries = [SimpleEntry(date: midnight,batteryNumber: String(format:"%.f%%", UIDevice.current.batteryLevel * 100),  batteryState: UIDevice.current.batteryState, configuration: configuration, shadow: photoShadow, timeNBattery: photoTimeNBattery)]
+        let entries = [SimpleEntry(date: midnight,batteryNumber: String(format:"%.f%%", UIDevice.current.batteryLevel * 100),  batteryState: UIDevice.current.batteryState, configuration: configuration, shadow: photoShadow, timeNBattery: photoTimeNBattery, selectColor: selectColor)]
         let timeline = Timeline(entries: entries, policy: .after(nextMidnight))
         completion(timeline)
     }
@@ -109,6 +116,7 @@ struct SimpleEntry: TimelineEntry {
     let configuration: ConfigurationIntent
     var shadow : Bool = true
     var timeNBattery : Bool = true
+    var selectColor: UIColor
 }
 
 struct widgetEntryView : View {
@@ -179,14 +187,14 @@ struct widgetEntryView : View {
                     Spacer()
                     HStack(alignment: .bottom) {
                         Text(entry.date,style: .timer)
-                            .padding(.all, family == .systemSmall ? 7 : (family == .systemMedium ? 10 : 15))
-                            .font(.headline)
-                            .foregroundColor(.white)
+                            .padding(.all, family == .systemSmall ? 8 : (family == .systemMedium ? 10 : 15))
+                            .font(.system(size: 16, weight: .bold, design: .rounded))
+                            .foregroundColor(Color(entry.selectColor))
                         
                         Text(entry.batteryNumber)
-                            .padding(.all, family == .systemSmall ? 7 : (family == .systemMedium ? 10 : 15))
-                            .font(.headline)
-                            .foregroundColor(.white)
+                            .padding(.all, family == .systemSmall ? 8 : (family == .systemMedium ? 10 : 15))
+                            .font(.system(size: 16, weight: .bold, design: .rounded))
+                            .foregroundColor(Color(entry.selectColor))
                     }
                     
                 }
@@ -244,7 +252,36 @@ struct widget: Widget {
 
 struct widget_Previews: PreviewProvider {
     static var previews: some View {
-        widgetEntryView(entry: SimpleEntry(date: Date(),batteryNumber: "loading",batteryState: UIDevice.BatteryState.unknown, configuration: ConfigurationIntent()))
+        widgetEntryView(entry: SimpleEntry(date: Date(),batteryNumber: "loading",batteryState: UIDevice.BatteryState.unknown, configuration: ConfigurationIntent(), selectColor: UIColor.white))
             .previewContext(WidgetPreviewContext(family: .systemSmall))
     }
+}
+
+extension UserDefaults {
+
+    func color(forKey key: String) -> UIColor? {
+
+        guard let colorData = data(forKey: key) else { return nil }
+
+        do {
+            return try NSKeyedUnarchiver.unarchivedObject(ofClass: UIColor.self, from: colorData)
+        } catch let error {
+            print("color error \(error.localizedDescription)")
+            return nil
+        }
+
+    }
+
+    func set(_ value: UIColor?, forKey key: String) {
+
+        guard let color = value else { return }
+        do {
+            let data = try NSKeyedArchiver.archivedData(withRootObject: color, requiringSecureCoding: false)
+            set(data, forKey: key)
+        } catch let error {
+            print("error color key data not saved \(error.localizedDescription)")
+        }
+
+    }
+
 }

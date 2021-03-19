@@ -26,3 +26,5 @@
 "unlockWrongCode" = "Wrong Code! Please try again!";
 "cancel" = "Cancel";
 "unlockAlready" = "You have unlocked all functions";
+"text" = "Text";
+"textColor" = "Text Color";

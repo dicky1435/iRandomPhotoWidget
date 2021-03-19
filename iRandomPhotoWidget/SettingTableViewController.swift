@@ -12,8 +12,11 @@ class SettingTableViewController: UIViewController,UITableViewDelegate, UITableV
     
     var photoShadow:Bool = false
     var photoTimeNBattery:Bool = false
+    private var selectColor = UIColor.white
+    private var colorPicker = UIColorPickerViewController()
     
     var info = [
+            [localizedString(forKey: "textColor")],
             [localizedString(forKey: "yes"),localizedString(forKey: "no")],
             //[localizedString(forKey: "photoInorder"),localizedString(forKey: "photoRandom")],
             [localizedString(forKey: "yes"),localizedString(forKey: "no")],
@@ -22,6 +25,7 @@ class SettingTableViewController: UIViewController,UITableViewDelegate, UITableV
         ]
     
     var titleArray = [
+        localizedString(forKey: "text"),
         localizedString(forKey: "photoShadow"),
         //localizedString(forKey: "photoplay"),
         localizedString(forKey: "photoTimeNBattery"),
@@ -64,6 +68,12 @@ class SettingTableViewController: UIViewController,UITableViewDelegate, UITableV
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if (UserDefaults(suiteName: "group.dicky.iRandomPhotoWidget")!.color(forKey: "textColor") == nil) {
+            self.selectColor = UIColor.white
+        } else {
+            self.selectColor = UserDefaults(suiteName: "group.dicky.iRandomPhotoWidget")!.color(forKey: "textColor") ?? UIColor.white
+        }
+        
         if (UserDefaults(suiteName: "group.dicky.iRandomPhotoWidget")!.string(forKey: "settingPhotoShadow") == nil) {
             self.photoShadow = true
         } else {
@@ -102,6 +112,9 @@ class SettingTableViewController: UIViewController,UITableViewDelegate, UITableV
 
         tableView.allowsMultipleSelection = false
 
+        colorPicker.delegate = self
+        colorPicker.selectedColor = selectColor
+        
         setFooterView()
         setupLayer()
         setView()
@@ -109,7 +122,7 @@ class SettingTableViewController: UIViewController,UITableViewDelegate, UITableV
     
     func tableView(_ tableView: UITableView,
       numberOfRowsInSection section: Int) -> Int {
-        if section == 2 {
+        if section == 3 {
             return Language.allCases.count
         } else {
             return info[section].count
@@ -125,7 +138,7 @@ class SettingTableViewController: UIViewController,UITableViewDelegate, UITableV
 
         cell.selectionStyle = .none
         
-        if indexPath.section == 0 {
+        if indexPath.section == 1 {
             
             if let myLabel = cell.textLabel {
                 myLabel.text =
@@ -144,7 +157,7 @@ class SettingTableViewController: UIViewController,UITableViewDelegate, UITableV
                 }
             }
             
-        } else if indexPath.section == 1 {
+        } else if indexPath.section == 2 {
             
             if let myLabel = cell.textLabel {
                 myLabel.text =
@@ -163,7 +176,7 @@ class SettingTableViewController: UIViewController,UITableViewDelegate, UITableV
                 }
             }
             
-        } else if indexPath.section == 2 {
+        } else if indexPath.section == 3 {
 
             
             cell.textLabel?.text = Language.allCases[indexPath.row].name
@@ -197,6 +210,10 @@ class SettingTableViewController: UIViewController,UITableViewDelegate, UITableV
             at: indexPath, animated: true)
 
         if indexPath.section == 0 {
+            
+            present(colorPicker, animated: true)
+            
+        } else if indexPath.section == 1 {
             if indexPath.row == 0 {
                 UserDefaults(suiteName: "group.dicky.iRandomPhotoWidget")!.set("YES", forKey: "settingPhotoShadow")
                 self.photoShadow = true
@@ -206,7 +223,7 @@ class SettingTableViewController: UIViewController,UITableViewDelegate, UITableV
             }
             WidgetCenter.shared.reloadAllTimelines()
             tableView.reloadData()
-        } else if indexPath.section == 1 {
+        } else if indexPath.section == 2 {
             if indexPath.row == 0 {
                 UserDefaults(suiteName: "group.dicky.iRandomPhotoWidget")!.set("YES", forKey: "settingPhotoTimeNBattery")
                 self.photoTimeNBattery = true
@@ -216,7 +233,7 @@ class SettingTableViewController: UIViewController,UITableViewDelegate, UITableV
             }
             WidgetCenter.shared.reloadAllTimelines()
             tableView.reloadData()
-        } else if indexPath.section == 2 {
+        } else if indexPath.section == 3 {
             if let cell = tableView.cellForRow(at: indexPath) {
                 cell.accessoryType = .checkmark
             }
@@ -231,7 +248,7 @@ class SettingTableViewController: UIViewController,UITableViewDelegate, UITableV
                 window!.rootViewController = UIHostingController(rootView: contentView)
             }
            
-        } else if indexPath.section == 3 {
+        } else if indexPath.section == 4 {
 //            if indexPath.row == 0 {
 //                photoIncreaseByAds()
 //            } else {
@@ -354,4 +371,45 @@ struct SettingTableView: UIViewControllerRepresentable {
     
     func updateUIViewController(_ uiViewController: UIViewController, context: Context) {
     }
+}
+
+extension SettingTableViewController: UIColorPickerViewControllerDelegate {
+    func colorPickerViewControllerDidFinish(_ viewController: UIColorPickerViewController) {
+        
+    }
+    
+    func colorPickerViewControllerDidSelectColor(_ viewController: UIColorPickerViewController) {
+        selectColor = viewController.selectedColor
+        UserDefaults(suiteName: "group.dicky.iRandomPhotoWidget")!.set(selectColor, forKey: "textColor")
+        WidgetCenter.shared.reloadAllTimelines()
+    }
+}
+
+extension UserDefaults {
+
+    func color(forKey key: String) -> UIColor? {
+
+        guard let colorData = data(forKey: key) else { return nil }
+
+        do {
+            return try NSKeyedUnarchiver.unarchivedObject(ofClass: UIColor.self, from: colorData)
+        } catch let error {
+            print("color error \(error.localizedDescription)")
+            return nil
+        }
+
+    }
+
+    func set(_ value: UIColor?, forKey key: String) {
+
+        guard let color = value else { return }
+        do {
+            let data = try NSKeyedArchiver.archivedData(withRootObject: color, requiringSecureCoding: false)
+            set(data, forKey: key)
+        } catch let error {
+            print("error color key data not saved \(error.localizedDescription)")
+        }
+
+    }
+
 }

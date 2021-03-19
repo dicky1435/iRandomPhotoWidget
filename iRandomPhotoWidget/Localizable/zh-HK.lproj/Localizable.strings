@@ -26,3 +26,5 @@
 "unlockWrongCode" = "錯誤代碼! 請重試!";
 "cancel" = "取消";
 "unlockAlready" = "你已經解鎖全部功能!";
+"text" = "字體";
+"textColor" = "字體顏色";
