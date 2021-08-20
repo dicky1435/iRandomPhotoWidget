@@ -398,7 +398,7 @@ struct ImagePicker : UIViewControllerRepresentable {
         if (UserDefaults(suiteName: "group.dicky.iRandomPhotoWidget")!.string(forKey: "purchaseUnlock") != nil) {
             // userDefault has a value
             if (UserDefaults(suiteName: "group.dicky.iRandomPhotoWidget")!.string(forKey: "purchaseUnlock") == GlobalConstants.unlockCode) {
-                config.selectionLimit = 200
+                config.selectionLimit = 250
             }
         }
         let picker = PHPickerViewController(configuration: config)
@@ -438,10 +438,10 @@ struct ImagePicker : UIViewControllerRepresentable {
                 let imgKey = getImageKey(index)
                 saveImage(imgKey, image)
                 list.append(imgKey)
-                UserDefaults(suiteName: "group.dicky.iRandomPhotoWidget")!.set(list, forKey: key)
-                UserDefaults(suiteName: "group.dicky.iRandomPhotoWidget")!.synchronize()
                 index += 1
-                if (index == images.count) {
+                if (image == images.last) {
+                    UserDefaults(suiteName: "group.dicky.iRandomPhotoWidget")!.set(list, forKey: key)
+                    UserDefaults(suiteName: "group.dicky.iRandomPhotoWidget")!.synchronize()
                     saveAction = true;
                 }
             }
@@ -454,7 +454,10 @@ struct ImagePicker : UIViewControllerRepresentable {
         func saveImage(_ imageName:String, _ image:UIImage) {
             if let shareUrl = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.dicky.iRandomPhotoWidget") {
                let imagePath = shareUrl.appendingPathComponent(imageName)
-                try? image.jpegData(compressionQuality: 0.9)?.write(to: imagePath)
+                _ = autoreleasepool
+                {
+                    try? image.jpegData(compressionQuality: 0.9)?.write(to: imagePath)
+                }
             }
         }
         
@@ -501,7 +504,8 @@ struct ImagePicker : UIViewControllerRepresentable {
                                     return
                                 }
                                 self.parent.images.append(image as! UIImage)
-                                if (self.parent.images.count == results.count) {
+                                
+                                if (img == results.last) {
                                     print("results:\(self.parent.images.count)")
                                     if self.saveImages(self.parent.images) {
                                         DispatchQueue.main.async {
@@ -512,8 +516,6 @@ struct ImagePicker : UIViewControllerRepresentable {
                                     }
                                 }
                             }
-                        } else {
-                            
                         }
                     }
                 }
