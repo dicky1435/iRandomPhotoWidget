@@ -12,6 +12,7 @@ class SettingTableViewController: UIViewController,UITableViewDelegate, UITableV
     
     var photoShadow:Bool = false
     var photoTimeNBattery:Bool = false
+    var photoTimeNBatteryPosition:Bool = false
     private var selectColor = UIColor.white
     private var colorPicker = UIColorPickerViewController()
     
@@ -20,6 +21,7 @@ class SettingTableViewController: UIViewController,UITableViewDelegate, UITableV
             [localizedString(forKey: "yes"),localizedString(forKey: "no")],
             //[localizedString(forKey: "photoInorder"),localizedString(forKey: "photoRandom")],
             [localizedString(forKey: "yes"),localizedString(forKey: "no")],
+            [localizedString(forKey: "up"),localizedString(forKey: "down")],
             [Language.allCases],
             [localizedString(forKey: "unlimitedCode")]
         ]
@@ -29,6 +31,7 @@ class SettingTableViewController: UIViewController,UITableViewDelegate, UITableV
         localizedString(forKey: "photoShadow"),
         //localizedString(forKey: "photoplay"),
         localizedString(forKey: "photoTimeNBattery"),
+        localizedString(forKey: "photoTimeNBatteryPosition"),
         localizedString(forKey: "language"),
         localizedString(forKey: "unlockFunction")
     ]
@@ -96,6 +99,17 @@ class SettingTableViewController: UIViewController,UITableViewDelegate, UITableV
             }
         }
         
+        if (UserDefaults(suiteName: "group.dicky.iRandomPhotoWidget")!.string(forKey: "settingPhotoTimeNBatteryPosition") == nil) {
+            self.photoTimeNBatteryPosition = false
+        } else {
+            // userDefault has a value
+            if (UserDefaults(suiteName: "group.dicky.iRandomPhotoWidget")!.string(forKey: "settingPhotoTimeNBatteryPosition") == "YES") {
+                self.photoTimeNBatteryPosition = true
+            } else {
+                self.photoTimeNBatteryPosition = false
+            }
+        }
+        
         self.view.backgroundColor = .systemGroupedBackground
         tableView.register(
           UITableViewCell.self, forCellReuseIdentifier: "Cell")
@@ -122,7 +136,7 @@ class SettingTableViewController: UIViewController,UITableViewDelegate, UITableV
     
     func tableView(_ tableView: UITableView,
       numberOfRowsInSection section: Int) -> Int {
-        if section == 3 {
+        if section == 4 {
             return Language.allCases.count
         } else {
             return info[section].count
@@ -177,6 +191,25 @@ class SettingTableViewController: UIViewController,UITableViewDelegate, UITableV
             }
             
         } else if indexPath.section == 3 {
+            
+            if let myLabel = cell.textLabel {
+                myLabel.text =
+                    "\(info[indexPath.section][indexPath.row])"
+            }
+            
+            cell.accessoryType = .none //accessory not selection
+            
+            if self.photoTimeNBatteryPosition {
+                if indexPath.row == 0 {
+                    cell.accessoryType = .checkmark
+                }
+            } else {
+                if indexPath.row == 1 {
+                    cell.accessoryType = .checkmark
+                }
+            }
+            
+        } else if indexPath.section == 4 {
 
             
             cell.textLabel?.text = Language.allCases[indexPath.row].name
@@ -234,6 +267,16 @@ class SettingTableViewController: UIViewController,UITableViewDelegate, UITableV
             WidgetCenter.shared.reloadAllTimelines()
             tableView.reloadData()
         } else if indexPath.section == 3 {
+            if indexPath.row == 0 {
+                UserDefaults(suiteName: "group.dicky.iRandomPhotoWidget")!.set("YES", forKey: "settingPhotoTimeNBatteryPosition")
+                self.photoTimeNBatteryPosition = true
+            } else {
+                UserDefaults(suiteName: "group.dicky.iRandomPhotoWidget")!.set("NO", forKey: "settingPhotoTimeNBatteryPosition")
+                self.photoTimeNBatteryPosition = false
+            }
+            WidgetCenter.shared.reloadAllTimelines()
+            tableView.reloadData()
+        } else if indexPath.section == 4 {
             if let cell = tableView.cellForRow(at: indexPath) {
                 cell.accessoryType = .checkmark
             }
@@ -248,7 +291,7 @@ class SettingTableViewController: UIViewController,UITableViewDelegate, UITableV
                 window!.rootViewController = UIHostingController(rootView: contentView)
             }
            
-        } else if indexPath.section == 4 {
+        } else if indexPath.section == 5 {
 //            if indexPath.row == 0 {
 //                photoIncreaseByAds()
 //            } else {

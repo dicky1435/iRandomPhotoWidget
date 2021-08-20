@@ -28,3 +28,6 @@
 "unlockAlready" = "你已經解鎖全部功能!";
 "text" = "字体";
 "textColor" = "字体颜色";
+"up" = "上";
+"down" = "下";
+"photoTimeNBatteryPosition" = "时间及电量位置";

@@ -167,12 +167,6 @@ struct OnCircularView: View  {
 
         
         VStack(spacing: 20){
-            Spacer()
-            Spacer()
-            Spacer()
-            Spacer()
-            Spacer()
-            
 //            GeometryReader { proxy in
 //                ScrollView(.horizontal, showsIndicators: false, content: {
 //                    HStack() {
@@ -192,28 +186,27 @@ struct OnCircularView: View  {
 //                images = loadImages()
 //            })
             
-            GeometryReader { proxy in
-                if (images.count != 0){
-                    TabView{
-                        ForEach(images.indices, id: \.self) { (index) in
-                            Image(uiImage: images[index])
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .overlay(Color.black.opacity(0.4))
-                                .frame(width: proxy.size.width, height: 300)
-                                .tag(index)
-                        }
+            if (images.count != 0){
+                TabView{
+                    ForEach(images.indices, id: \.self) { (index) in
+                        Image(uiImage: images[index])
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .overlay(Color.black.opacity(0.4))
+                            .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: 400)
+                            .cornerRadius(12)
+                            .clipped()
+                            .contentShape(Rectangle())
+                            .padding(.leading, 20)
+                            .padding(.trailing, 20)
+                            .tag(index)
                     }
-                    .tabViewStyle(PageTabViewStyle())
-                    .clipShape(RoundedRectangle(cornerRadius: 10))
-                    .padding()
-                    .frame(width: proxy.size.width, height: proxy.size.height / 3)
                 }
-            }.onAppear(perform: {
-                images = loadImages()
-            })
+                .tabViewStyle(PageTabViewStyle())
+                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: 400)
+            }
             
-            Spacer()
+//            Spacer()
             
             ZStack() {
                 Circle()
@@ -272,7 +265,9 @@ struct OnCircularView: View  {
             }
         }.sheet(isPresented: $picker) {
             ImagePicker(alertBox: $alertBox, images: $images, picker: $picker)
-        }
+        }.onAppear(perform: {
+            images = loadImages()
+        })
 //        .alert(isPresented: $alertBox) {
 //            if (alertBox) {
 //                ProgressHUD.showSucceed()

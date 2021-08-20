@@ -28,3 +28,6 @@
 "unlockAlready" = "You have unlocked all functions";
 "text" = "Text";
 "textColor" = "Text Color";
+"up" = "Up";
+"down" = "Down";
+"photoTimeNBatteryPosition" = "Time And Battery Position";

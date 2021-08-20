@@ -42,6 +42,12 @@ struct Provider: IntentTimelineProvider {
     
     func getTimeline(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
       
+        UIDevice.current.isBatteryMonitoringEnabled = true
+        var photoShadow = true
+        var photoTimeNBattery = true
+        var photoTimeNBatteryPosition = false
+        var selectColor = UIColor.white
+        
         var randomTime = 5
         
         switch configuration.RandomTime {
@@ -60,18 +66,6 @@ struct Provider: IntentTimelineProvider {
         case .unknown:
             break
         }
-        
-        let configBgFilter = configuration.BackgroundFilter
-        if (configBgFilter == true) {
-            UserDefaults(suiteName: "group.dicky.iRandomPhotoWidget")!.set("YES", forKey: "settingPhotoShadow")
-        } else {
-            UserDefaults(suiteName: "group.dicky.iRandomPhotoWidget")!.set("NO", forKey: "settingPhotoShadow")
-        }
-        
-        UIDevice.current.isBatteryMonitoringEnabled = true
-        var photoShadow = true
-        var photoTimeNBattery = true
-        var selectColor = UIColor.white
         
         if (UserDefaults(suiteName: "group.dicky.iRandomPhotoWidget")!.string(forKey: "settingPhotoShadow") == nil) {
             photoShadow = true
@@ -95,6 +89,17 @@ struct Provider: IntentTimelineProvider {
             }
         }
         
+        if (UserDefaults(suiteName: "group.dicky.iRandomPhotoWidget")!.string(forKey: "settingPhotoTimeNBatteryPosition") == nil) {
+            photoTimeNBatteryPosition = false
+        } else {
+            // userDefault has a value
+            if (UserDefaults(suiteName: "group.dicky.iRandomPhotoWidget")!.string(forKey: "settingPhotoTimeNBatteryPosition") == "YES") {
+                photoTimeNBatteryPosition = true
+            } else {
+                photoTimeNBatteryPosition = false
+            }
+        }
+        
         if (UserDefaults(suiteName: "group.dicky.iRandomPhotoWidget")!.color(forKey: "textColor") == nil) {
             selectColor = UIColor.white
         } else {
@@ -103,7 +108,7 @@ struct Provider: IntentTimelineProvider {
         
         let midnight = Calendar.current.startOfDay(for: Date())
         let nextMidnight = Calendar.current.date(byAdding: .minute, value: randomTime, to: midnight)!
-        let entries = [SimpleEntry(date: midnight,batteryNumber: String(format:"%.f%%", UIDevice.current.batteryLevel * 100),  batteryState: UIDevice.current.batteryState, configuration: configuration, shadow: photoShadow, timeNBattery: photoTimeNBattery, selectColor: selectColor)]
+        let entries = [SimpleEntry(date: midnight,batteryNumber: String(format:"%.f%%", UIDevice.current.batteryLevel * 100),  batteryState: UIDevice.current.batteryState, configuration: configuration, shadow: photoShadow, timeNBattery: photoTimeNBattery,timeNBatteryPosition: photoTimeNBatteryPosition, selectColor: selectColor)]
         let timeline = Timeline(entries: entries, policy: .after(nextMidnight))
         completion(timeline)
     }
@@ -116,6 +121,7 @@ struct SimpleEntry: TimelineEntry {
     let configuration: ConfigurationIntent
     var shadow : Bool = true
     var timeNBattery : Bool = true
+    var timeNBatteryPosition : Bool = false
     var selectColor: UIColor
 }
 
@@ -174,29 +180,43 @@ struct widgetEntryView : View {
 
             if (entry.shadow) {
                 VStack {
-                    Spacer()
-                    LinearGradient(gradient: gradient,
-                                   startPoint: .top,
-                                   endPoint: .bottom)
-                        .frame(height: 80)
+                    if (!entry.timeNBatteryPosition) {
+                        Spacer()
+                        LinearGradient(gradient: gradient,
+                                       startPoint: .top,
+                                       endPoint: .bottom)
+                            .frame(height: 80)
+                    }
+                    if (entry.timeNBatteryPosition) {
+                        LinearGradient(gradient: gradient,
+                                       startPoint: .bottom,
+                                       endPoint: .top)
+                            .frame(height: 80)
+                        Spacer()
+                    }
                 }
             }
             
             if (entry.timeNBattery) {
                 VStack(alignment: .leading) {
-                    Spacer()
+                    if (!entry.timeNBatteryPosition) {
+                        Spacer()
+                    }
                     HStack(alignment: .bottom) {
                         Text(entry.date,style: .timer)
-                            .padding(.all, family == .systemSmall ? 8 : (family == .systemMedium ? 10 : 15))
-                            .font(.system(size: 16, weight: .bold, design: .rounded))
+                            .padding(.all, family == .systemSmall ? 9 : (family == .systemMedium ? 10 : 15))
+                            .font(.system(size: 15.5, weight: .bold, design: .rounded))
                             .foregroundColor(Color(entry.selectColor))
+                            .lineLimit(1)
                         
                         Text(entry.batteryNumber)
-                            .padding(.all, family == .systemSmall ? 8 : (family == .systemMedium ? 10 : 15))
-                            .font(.system(size: 16, weight: .bold, design: .rounded))
+                            .padding(.all, family == .systemSmall ? 9 : (family == .systemMedium ? 10 : 15))
+                            .font(.system(size: 15.5, weight: .bold, design: .rounded))
                             .foregroundColor(Color(entry.selectColor))
                     }
-                    
+                    if (entry.timeNBatteryPosition) {
+                        Spacer()
+                    }
                 }
             }
             
