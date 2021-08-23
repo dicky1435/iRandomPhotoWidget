@@ -58,7 +58,7 @@ struct ContentView: View {
                     })
                 } else {
                     if (imageList.count > 0) {
-                        OnBoardScreen(image: imageList.first!)
+                        OnBoardScreen(images: imageList)
                     }
                 }
             }
@@ -88,7 +88,7 @@ struct ContentView: View {
                 } else {
                     endSplash = true
                 }
-                imageList = loadImage()
+                imageList = loadImages()
                 if (imageList.count == 0) {
                     self.goToHome = true
                 }
@@ -111,14 +111,26 @@ struct ContentView: View {
         }
     }
     
-    func loadImage() -> [UIImage] {
+    func loadImages() -> [UIImage] {
+//        let list = UserDefaults(suiteName: "group.dicky.iRandomPhotoWidget")!.array(forKey: key) as? [String] ?? [String]()
+//        let imageName = list.randomElement()
+//        var imageList = [UIImage]()
+//        if let shareUrl = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.dicky.iRandomPhotoWidget") {
+//            let imagePath = shareUrl.appendingPathComponent(imageName ?? "")
+//            if let image = UIImage(contentsOfFile: imagePath.path) {
+//                imageList.append(image)
+//            }
+//        }
+//        return imageList
         let list = UserDefaults(suiteName: "group.dicky.iRandomPhotoWidget")!.array(forKey: key) as? [String] ?? [String]()
-        let imageName = list.randomElement()
         var imageList = [UIImage]()
-        if let shareUrl = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.dicky.iRandomPhotoWidget") {
-            let imagePath = shareUrl.appendingPathComponent(imageName ?? "")
-            if let image = UIImage(contentsOfFile: imagePath.path) {
-                imageList.append(image)
+        for (index, _) in list.enumerated() {
+            let imageName = "\(key)\(index)"
+            if let shareUrl = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.dicky.iRandomPhotoWidget") {
+               let imagePath = shareUrl.appendingPathComponent(imageName)
+                if let image = UIImage(contentsOfFile: imagePath.path) {
+                    imageList.append(image)
+                }
             }
         }
         return imageList
@@ -282,9 +294,29 @@ struct OnCircularView: View  {
 }
 
 struct OnBoardScreen: View {
-    @State var image = UIImage()
+    @State var currentIndex: Int = 2
+    
+    @State var titleText: [TextAnimation] = []
+    
+    @State var subTitleAnimation: Bool = false
+    @State var endAnimation = false
+    
+    @State var titles = [
+        "aa aa aaa aa aa aaa",
+        "bbb bbb bbbbb bb",
+        "cc ccc cc cc cc cc"
+    ]
+    
+    @State var subTitles = [
+        "aaa",
+        "bbb",
+        "ccc"
+    ]
+    
+    @State var images : [UIImage] = []
     @State private var maxWidth = UIScreen.main.bounds.width - 100
     @State private var offset : CGFloat = 0
+    @State private var nextIndex : Int = 0
     
     var body: some View{
         
@@ -294,61 +326,157 @@ struct OnBoardScreen: View {
                 .ignoresSafeArea(.all
                                  ,edges: .all)
             
-            Image(uiImage: image)
-                .resizable()
-                .scaledToFill()
-                //.aspectRatio(contentMode: .fill)
-                .frame(minWidth: 0, maxWidth: .infinity)
-                .frame(minHeight: 0, maxHeight: .infinity)
-                .ignoresSafeArea(.all
-                                 ,edges: .all)
-            VStack {
+            GeometryReader{proxy in
+                let size = proxy.size
+
+                Color.black
+
+                ForEach(images.indices, id: \.self) { (index) in
+                    
+                    Image(uiImage: images[index])
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: size.width, height: size.height)
+                        .opacity(nextIndex == index ? 1 : 0)
+                        .tag(index)
+                }
+                
+                LinearGradient(gradient: Gradient(colors: [
+                               .clear,
+                               .clear,
+                               .black.opacity(0.1),
+                               .black
+                           ]), startPoint: .top, endPoint: .bottom)
+
+
+            }.ignoresSafeArea()
+
+            
+            VStack(spacing: 20) {
 
                 Spacer()
                 
+                HStack(spacing: 0) {
+                    ForEach(titleText) {
+                        text in
+                        Text(text.text)
+                            .offset(y: text.offset)
+                    }
+                    .font(.largeTitle.bold())
+                    .foregroundColor(.white)
+
+                }
+                .offset(y: endAnimation ? -100 : 0)
+                .opacity(endAnimation ? 0 : 1)
+
+                
+                Text(subTitles[currentIndex])
+                    .opacity(0.7)
+                    .foregroundColor(.white)
+                    .offset(y: !subTitleAnimation ? 80 : 0)
+                    .offset(y: endAnimation ? -100 : 0)
+                    .opacity(endAnimation ? 0 : 1)
                 
                 ZStack {
                     Capsule()
-                        .fill(Color.white.opacity(0.1))
+                        .fill(Color.white.opacity(1))
                     
-                    Text(localizedString(forKey: "swipeToStart"))
+                    Text(localizedString(forKey: "enterToStart"))
                         .fontWeight(.semibold)
-                        .foregroundColor(.white)
-                        .padding(.leading,30)
+                        .foregroundColor(.black)
+//                        .padding(.leading, 30)
                     
 
-                    HStack{
-                        Capsule()
-                            .fill(Color.init(red: 34/255, green: 30/255, blue: 47/255))
-                            .frame(width: calculateWidth() + 65)
-
-                        Spacer(minLength: 0)
-                    }
+//                    HStack{
+//                        Capsule()
+//                            .fill(Color.init(red: 34/255, green: 30/255, blue: 47/255))
+//                            .frame(width: calculateWidth() + 65)
+//
+//                        Spacer(minLength: 0)
+//                    }
                     
-                    HStack{
-                        ZStack{
-                            Image(systemName: "chevron.right")
-                            
-                            Image(systemName: "chevron.right")
-                                .offset(x:-10)
-                            
-                        }.foregroundColor(.white)
-                        .offset(x:5)
-                        .frame(width: 65, height: 65)
-                        .background(Color.init(red: 34/255, green: 30/255, blue: 47/255))
-                        .clipShape(Circle())
-                        .offset(x:offset)
-                        .gesture(DragGesture().onChanged(onChanged(value:)).onEnded(onEnd(value:)))
-                        
-                        Spacer()
-                    }
+//                    HStack{
+//                        ZStack{
+//                            Image(systemName: "chevron.right")
+//
+//                            Image(systemName: "chevron.right")
+//                                .offset(x:-10)
+//
+//                        }.foregroundColor(.white)
+//                        .offset(x:5)
+//                        .frame(width: 65, height: 65)
+//                        .background(Color.init(red: 34/255, green: 30/255, blue: 47/255))
+//                        .clipShape(Circle())
+//                        .offset(x:offset)
+//                        .gesture(DragGesture().onChanged(onChanged(value:)).onEnded(onEnd(value:)))
+//
+//                        Spacer()
+//                    }
                     
                     
                 }
-                .frame(width: maxWidth, height: 65)
-                .padding(.bottom)
+                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 50, maxHeight: 65, alignment: .bottom)
+                .padding(.top)
+                .onTapGesture {
+                    NotificationCenter.default.post(
+                        name: NSNotification.Name("Success"), object: nil
+                    )
+                }
+            }.padding()            
+        }
+        .onAppear(){
+            currentIndex = 0
+            nextIndex = Int.random(in: 0..<images.count)
+        }
+        .onChange(of: currentIndex) {
+            newValue in
+            
+            getSpilitedText(text: titles[currentIndex]) {
+                
+                withAnimation(.easeInOut(duration: 1)) {
+                    endAnimation.toggle()
+                }
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.9) {
+                    titleText.removeAll()
+                    subTitleAnimation.toggle()
+                    endAnimation.toggle()
+                    
+                    withAnimation(.easeIn(duration: 0.6)) {
+                        if currentIndex < (titles.count - 1) {
+                            currentIndex += 1
+                        } else {
+                            currentIndex = 0
+                        }
+                        nextIndex = Int.random(in: 0..<images.count)
+                    }
+                }
+            }
+        }
+    }
+    
+    func getSpilitedText(text: String, completion: @escaping()->()) {
+        for (index, character) in text.enumerated() {
+            titleText.append(TextAnimation(text: String(character)))
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + Double(index) * 0.03) {
+                
+                withAnimation(.easeInOut(duration: 0.5)) {
+                    titleText[index].offset = 0
+                }
+                
+            }
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + Double(text.count) * 0.02) {
+            
+            withAnimation(.easeInOut(duration: 0.5)) {
+                subTitleAnimation.toggle()
             }
             
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.95) {
+                completion()
+            }
         }
     }
     
@@ -449,7 +577,6 @@ struct ImagePicker : UIViewControllerRepresentable {
             
             return saveAction
         }
-        
         
         func saveImage(_ imageName:String, _ image:UIImage) {
             if let shareUrl = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.dicky.iRandomPhotoWidget") {

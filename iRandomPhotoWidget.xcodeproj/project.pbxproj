@@ -13,6 +13,7 @@
 		8E240ECA257E04070046B92F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8E240ECC257E04070046B92F /* Localizable.strings */; };
 		8E240EE2257E04B60046B92F /* BundleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E240EE1257E04B60046B92F /* BundleExtension.swift */; };
 		8E262B9E2579E90300F7F1A6 /* SettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E262B9D2579E90300F7F1A6 /* SettingTableViewController.swift */; };
+		8E2E9E1926CF8EE2003C9FF4 /* TextAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E2E9E1826CF8EE2003C9FF4 /* TextAnimation.swift */; };
 		8E3FC6B7258079390099AB81 /* GlobalConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3FC6B6258079390099AB81 /* GlobalConstants.swift */; };
 		8ECC872425761539006BC2B2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECC872325761539006BC2B2 /* AppDelegate.swift */; };
 		8ECC872625761539006BC2B2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECC872525761539006BC2B2 /* SceneDelegate.swift */; };
@@ -87,6 +88,7 @@
 		8E240EEC257E05440046B92F /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		8E240EED257E05490046B92F /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		8E262B9D2579E90300F7F1A6 /* SettingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewController.swift; sourceTree = "<group>"; };
+		8E2E9E1826CF8EE2003C9FF4 /* TextAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextAnimation.swift; sourceTree = "<group>"; };
 		8E3FC6B6258079390099AB81 /* GlobalConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalConstants.swift; sourceTree = "<group>"; };
 		8E5786BCF78C03D64C712BF7 /* Pods_iRandomPhotoWidgetTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iRandomPhotoWidgetTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8ECC872025761539006BC2B2 /* iRandomPhotoWidget.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iRandomPhotoWidget.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -196,6 +198,7 @@
 				8ECC872325761539006BC2B2 /* AppDelegate.swift */,
 				8ECC872525761539006BC2B2 /* SceneDelegate.swift */,
 				8ECC872725761539006BC2B2 /* ContentView.swift */,
+				8E2E9E1826CF8EE2003C9FF4 /* TextAnimation.swift */,
 				8E262B9D2579E90300F7F1A6 /* SettingTableViewController.swift */,
 				8E3FC6B6258079390099AB81 /* GlobalConstants.swift */,
 				8ECC87292576153A006BC2B2 /* Assets.xcassets */,
@@ -572,6 +575,7 @@
 				8ECC872625761539006BC2B2 /* SceneDelegate.swift in Sources */,
 				8E240EBB257E03A00046B92F /* Localizable.swift in Sources */,
 				8E3FC6B7258079390099AB81 /* GlobalConstants.swift in Sources */,
+				8E2E9E1926CF8EE2003C9FF4 /* TextAnimation.swift in Sources */,
 				8ECC872825761539006BC2B2 /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
