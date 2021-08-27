@@ -14,12 +14,12 @@ import ProgressHUD
 class BatteryModel : ObservableObject {
     @Published var level = UIDevice.current.batteryLevel
     private var cancellableSet: Set<AnyCancellable> = []
-
+    
     init () {
         UIDevice.current.isBatteryMonitoringEnabled = true
         assignLevelPublisher()
     }
-
+    
     private func assignLevelPublisher() {
         UIDevice.current
             .publisher(for: \.batteryLevel)
@@ -40,7 +40,7 @@ struct ContentView: View {
     let key = "randomImage"
     
     var body: some View {
-            
+        
         ZStack{
             
             ZStack {
@@ -112,22 +112,22 @@ struct ContentView: View {
     }
     
     func loadImages() -> [UIImage] {
-//        let list = UserDefaults(suiteName: "group.dicky.iRandomPhotoWidget")!.array(forKey: key) as? [String] ?? [String]()
-//        let imageName = list.randomElement()
-//        var imageList = [UIImage]()
-//        if let shareUrl = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.dicky.iRandomPhotoWidget") {
-//            let imagePath = shareUrl.appendingPathComponent(imageName ?? "")
-//            if let image = UIImage(contentsOfFile: imagePath.path) {
-//                imageList.append(image)
-//            }
-//        }
-//        return imageList
+        //        let list = UserDefaults(suiteName: "group.dicky.iRandomPhotoWidget")!.array(forKey: key) as? [String] ?? [String]()
+        //        let imageName = list.randomElement()
+        //        var imageList = [UIImage]()
+        //        if let shareUrl = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.dicky.iRandomPhotoWidget") {
+        //            let imagePath = shareUrl.appendingPathComponent(imageName ?? "")
+        //            if let image = UIImage(contentsOfFile: imagePath.path) {
+        //                imageList.append(image)
+        //            }
+        //        }
+        //        return imageList
         let list = UserDefaults(suiteName: "group.dicky.iRandomPhotoWidget")!.array(forKey: key) as? [String] ?? [String]()
         var imageList = [UIImage]()
         for (index, _) in list.enumerated() {
             let imageName = "\(key)\(index)"
             if let shareUrl = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.dicky.iRandomPhotoWidget") {
-               let imagePath = shareUrl.appendingPathComponent(imageName)
+                let imagePath = shareUrl.appendingPathComponent(imageName)
                 if let image = UIImage(contentsOfFile: imagePath.path) {
                     imageList.append(image)
                 }
@@ -137,17 +137,13 @@ struct ContentView: View {
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-    }
-}
 
 struct OnCircularView: View  {
     @State var images : [UIImage] = []
     @State var picker = false
     @State var alertBox = false
     @State var setting = false
+    @State var gridPage = false
     @ObservedObject var batteryModel = BatteryModel()
     let key = "randomImage"
     
@@ -161,7 +157,7 @@ struct OnCircularView: View  {
         for (index, _) in list.enumerated() {
             let imageName = getImageKey(index)
             if let shareUrl = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.dicky.iRandomPhotoWidget") {
-               let imagePath = shareUrl.appendingPathComponent(imageName)
+                let imagePath = shareUrl.appendingPathComponent(imageName)
                 if let image = UIImage(contentsOfFile: imagePath.path) {
                     imageList.append(image)
                 }
@@ -176,27 +172,13 @@ struct OnCircularView: View  {
         }.fullScreenCover(isPresented: $setting, content: {
             SettingTableView().ignoresSafeArea()
         })
-
+        
+        ZStack(){
+        }.fullScreenCover(isPresented: $gridPage, content: {
+            PhotoGridView(storageImageList: images, isPresented: $gridPage).ignoresSafeArea()
+        })
         
         VStack(spacing: 20){
-//            GeometryReader { proxy in
-//                ScrollView(.horizontal, showsIndicators: false, content: {
-//                    HStack() {
-//                        ForEach(images.indices, id: \.self) { (index) in
-//                            Image(uiImage: images[index])
-//                                .resizable()
-//                                .aspectRatio(contentMode: .fit)
-//                                .overlay(Color.black.opacity(0.4))
-//                                .frame(width: proxy.size.width, height: 300)
-//                        }
-//                    }
-//                })
-//                .clipShape(RoundedRectangle(cornerRadius: 10))
-//                .padding()
-//                .frame(width: proxy.size.width, height: proxy.size.height / 3)
-//            }.onAppear(perform: {
-//                images = loadImages()
-//            })
             
             if (images.count != 0){
                 TabView{
@@ -218,13 +200,11 @@ struct OnCircularView: View  {
                 .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: 400)
             }
             
-//            Spacer()
-            
             ZStack() {
                 Circle()
                     .stroke(Color.white, lineWidth: 3)
                     .opacity(0.1)
-
+                
                 Circle()
                     .trim(from: 0, to: CGFloat(batteryModel.level))
                     .stroke(batteryModel.level > 0.5 ? Color.green : Color.orange, lineWidth: 3)
@@ -233,19 +213,34 @@ struct OnCircularView: View  {
                         VStack(spacing: 10) {
                             Text("\(Int(round(batteryModel.level * 100)))%")
                             Text(localizedString(forKey: "totalPhotos")+": \(images.count)")
-                            Button(action: {
-                                self.setting.toggle()
-                            }) {
-                                HStack {
-                                    Image(systemName: "gearshape.fill")
-                                        .font(.title)
+                            HStack(alignment: .center, spacing: 25) {
+                                
+                                Button(action: {
+                                    self.gridPage.toggle()
+                                }) {
+                                    HStack {
+                                        Image(systemName: "photo.on.rectangle.angled")
+                                            .font(.title)
+                                    }
+                                    .frame(minWidth: 20, maxWidth: 20, minHeight: 20, maxHeight: 20)
+                                    .foregroundColor(.white)
                                 }
-                                .frame(minWidth: 20, maxWidth: 20, minHeight: 20, maxHeight: 20)
-                                .foregroundColor(.white)
-                                .padding()
-                            }
+                                
+                                Button(action: {
+                                    self.setting.toggle()
+                                }) {
+                                    HStack {
+                                        Image(systemName: "gearshape.fill")
+                                            .font(.title)
+                                    }
+                                    .frame(minWidth: 20, maxWidth: 20, minHeight: 20, maxHeight: 20)
+                                    .foregroundColor(.white)
+                                }
+                                
+                            }.padding()
+                            
                         }
-                                .foregroundColor(Color.white))
+                        .foregroundColor(Color.white))
                 
                 Circle()
                     .fill(batteryModel.level > 0.5 ? Color.green : Color.orange)
@@ -268,33 +263,23 @@ struct OnCircularView: View  {
                         .fontWeight(.semibold)
                         .font(.title)
                 }
-                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 20, maxHeight: 25)
-                .padding()
+                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 50, maxHeight: 60)
                 .foregroundColor(.white)
                 .background(LinearGradient(gradient: Gradient(colors: [Color.green, Color.blue]), startPoint: .leading, endPoint: .trailing))
-                .cornerRadius(40)
+                .cornerRadius(100)
                 .padding(.horizontal, 20)
+                .padding(.bottom)
             }
         }.sheet(isPresented: $picker) {
             ImagePicker(alertBox: $alertBox, images: $images, picker: $picker)
         }.onAppear(perform: {
             images = loadImages()
         })
-//        .alert(isPresented: $alertBox) {
-//            if (alertBox) {
-//                ProgressHUD.showSucceed()
-//                alertBox = false
-//            }
-            
-//            Alert(title: Text("Photos saved!"), dismissButton: .default(Text("OK")) {
-//                alertBox = false
-//            })
-//        }
     }
 }
 
 struct OnBoardScreen: View {
-    @State var currentIndex: Int = 2
+    @State var currentIndex: Int = 1
     
     @State var titleText: [TextAnimation] = []
     
@@ -302,9 +287,9 @@ struct OnBoardScreen: View {
     @State var endAnimation = false
     
     @State var titles = [
-        "aa aa aaa aa aa aaa",
-        "bbb bbb bbbbb bb",
-        "cc ccc cc cc cc cc"
+        "This is test Message 1",
+        "This is test Message 2",
+        "This is test Message 3"
     ]
     
     @State var subTitles = [
@@ -328,9 +313,9 @@ struct OnBoardScreen: View {
             
             GeometryReader{proxy in
                 let size = proxy.size
-
+                
                 Color.black
-
+                
                 ForEach(images.indices, id: \.self) { (index) in
                     
                     Image(uiImage: images[index])
@@ -342,18 +327,18 @@ struct OnBoardScreen: View {
                 }
                 
                 LinearGradient(gradient: Gradient(colors: [
-                               .clear,
-                               .clear,
-                               .black.opacity(0.1),
-                               .black
-                           ]), startPoint: .top, endPoint: .bottom)
-
-
+                    .clear,
+                    .clear,
+                    .black.opacity(0.1),
+                    .black
+                ]), startPoint: .top, endPoint: .bottom)
+                
+                
             }.ignoresSafeArea()
-
+            
             
             VStack(spacing: 20) {
-
+                
                 Spacer()
                 
                 HStack(spacing: 0) {
@@ -362,13 +347,13 @@ struct OnBoardScreen: View {
                         Text(text.text)
                             .offset(y: text.offset)
                     }
-                    .font(.largeTitle.bold())
+                    .font(.title.bold())
                     .foregroundColor(.white)
-
+                    
                 }
                 .offset(y: endAnimation ? -100 : 0)
                 .opacity(endAnimation ? 0 : 1)
-
+                
                 
                 Text(subTitles[currentIndex])
                     .opacity(0.7)
@@ -384,34 +369,34 @@ struct OnBoardScreen: View {
                     Text(localizedString(forKey: "enterToStart"))
                         .fontWeight(.semibold)
                         .foregroundColor(.black)
-//                        .padding(.leading, 30)
+                    //                        .padding(.leading, 30)
                     
-
-//                    HStack{
-//                        Capsule()
-//                            .fill(Color.init(red: 34/255, green: 30/255, blue: 47/255))
-//                            .frame(width: calculateWidth() + 65)
-//
-//                        Spacer(minLength: 0)
-//                    }
                     
-//                    HStack{
-//                        ZStack{
-//                            Image(systemName: "chevron.right")
-//
-//                            Image(systemName: "chevron.right")
-//                                .offset(x:-10)
-//
-//                        }.foregroundColor(.white)
-//                        .offset(x:5)
-//                        .frame(width: 65, height: 65)
-//                        .background(Color.init(red: 34/255, green: 30/255, blue: 47/255))
-//                        .clipShape(Circle())
-//                        .offset(x:offset)
-//                        .gesture(DragGesture().onChanged(onChanged(value:)).onEnded(onEnd(value:)))
-//
-//                        Spacer()
-//                    }
+                    //                    HStack{
+                    //                        Capsule()
+                    //                            .fill(Color.init(red: 34/255, green: 30/255, blue: 47/255))
+                    //                            .frame(width: calculateWidth() + 65)
+                    //
+                    //                        Spacer(minLength: 0)
+                    //                    }
+                    
+                    //                    HStack{
+                    //                        ZStack{
+                    //                            Image(systemName: "chevron.right")
+                    //
+                    //                            Image(systemName: "chevron.right")
+                    //                                .offset(x:-10)
+                    //
+                    //                        }.foregroundColor(.white)
+                    //                        .offset(x:5)
+                    //                        .frame(width: 65, height: 65)
+                    //                        .background(Color.init(red: 34/255, green: 30/255, blue: 47/255))
+                    //                        .clipShape(Circle())
+                    //                        .offset(x:offset)
+                    //                        .gesture(DragGesture().onChanged(onChanged(value:)).onEnded(onEnd(value:)))
+                    //
+                    //                        Spacer()
+                    //                    }
                     
                     
                 }
@@ -427,6 +412,9 @@ struct OnBoardScreen: View {
         .onAppear(){
             currentIndex = 0
             nextIndex = Int.random(in: 0..<images.count)
+            //            WeatherApi().loadData { (weathers) in
+            //                self.weathers = weathers
+            //            }
         }
         .onChange(of: currentIndex) {
             newValue in
@@ -535,7 +523,7 @@ struct ImagePicker : UIViewControllerRepresentable {
     }
     
     func updateUIViewController(_ uiViewController: PHPickerViewController, context: Context) {
-
+        
     }
     
     class Coordinator: NSObject,PHPickerViewControllerDelegate {
@@ -554,7 +542,7 @@ struct ImagePicker : UIViewControllerRepresentable {
         func getImageKey(_ index:Int) -> String {
             return "\(key)\(index)"
         }
-
+        
         func saveImages(_ images:[UIImage]) -> Bool{
             var saveAction = false
             var list = UserDefaults(suiteName: "group.dicky.iRandomPhotoWidget")!.array(forKey: key) as? [String] ?? [String]()
@@ -580,7 +568,7 @@ struct ImagePicker : UIViewControllerRepresentable {
         
         func saveImage(_ imageName:String, _ image:UIImage) {
             if let shareUrl = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.dicky.iRandomPhotoWidget") {
-               let imagePath = shareUrl.appendingPathComponent(imageName)
+                let imagePath = shareUrl.appendingPathComponent(imageName)
                 _ = autoreleasepool
                 {
                     try? image.jpegData(compressionQuality: 0.9)?.write(to: imagePath)
@@ -594,15 +582,15 @@ struct ImagePicker : UIViewControllerRepresentable {
             for (index, _) in list.enumerated() {
                 let imageName = getImageKey(index)
                 if let shareUrl = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.dicky.iRandomPhotoWidget") {
-                   let imagePath = shareUrl.appendingPathComponent(imageName)
+                    let imagePath = shareUrl.appendingPathComponent(imageName)
                     if UIImage(contentsOfFile: imagePath.path) != nil {
                         do {
-                              if FileManager.default.fileExists(atPath: imagePath.path) {
-                                  try FileManager.default.removeItem(atPath: imagePath.path)
-                               }
-                           } catch let error as NSError {
-                               print(error.debugDescription)
-                           }
+                            if FileManager.default.fileExists(atPath: imagePath.path) {
+                                try FileManager.default.removeItem(atPath: imagePath.path)
+                            }
+                        } catch let error as NSError {
+                            print(error.debugDescription)
+                        }
                     }
                 }
             }

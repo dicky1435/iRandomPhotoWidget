@@ -127,7 +127,7 @@ struct SimpleEntry: TimelineEntry {
 
 struct widgetEntryView : View {
     var entry: Provider.Entry
-    @State var imageArray = [UIImage(named: "demoPhoto")];
+    @State var imageArray = [UIImage(named: "snapchatLarge")];
     @Environment(\.widgetFamily) var family
     let key = "randomImage"
     
@@ -205,13 +205,13 @@ struct widgetEntryView : View {
                     HStack(alignment: .bottom) {
                         Text(entry.date,style: .timer)
                             .padding(.all, family == .systemSmall ? 9 : (family == .systemMedium ? 10 : 15))
-                            .font(.system(size: 15.5, weight: .bold, design: .rounded))
+                            .font(.system(size: UIScreen.main.nativeBounds.height < 1920 ? 14 : 15.5, weight: .bold, design: .rounded))
                             .foregroundColor(Color(entry.selectColor))
                             .lineLimit(1)
                         
                         Text(entry.batteryNumber)
                             .padding(.all, family == .systemSmall ? 9 : (family == .systemMedium ? 10 : 15))
-                            .font(.system(size: 15.5, weight: .bold, design: .rounded))
+                            .font(.system(size: UIScreen.main.nativeBounds.height < 1920 ? 14 : 15.5, weight: .bold, design: .rounded))
                             .foregroundColor(Color(entry.selectColor))
                     }
                     if (entry.timeNBatteryPosition) {
